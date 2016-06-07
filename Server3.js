@@ -30,7 +30,7 @@ function pollcb(pin){
         console.log('Button event on P%d (button currently %s)', pin, state);
 };
 
-gpio.poll(29, pollcb);
+gpio.poll(29, pollcb, gpio.POLL_HIGH);
 //gpio.poll(31, btnPsh);
 
 // Setup pins for poti
