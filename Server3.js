@@ -26,11 +26,12 @@ function pollcb(pin){
          * may be missed during the 1ms poll window.  The best we can do is to
          * print the current state after a event is detected.
          */
+         console.log('Its something');
         var state = gpio.read(pin) ? 'pressed' : 'released';
         console.log('Button event on P%d (button currently %s)', pin, state);
 };
 
-gpio.poll(29, pollcb, gpio.POLL_HIGH);
+gpio.poll(29, pollcb, gpio.POLL_LOW);
 //gpio.poll(31, btnPsh);
 
 // Setup pins for poti
