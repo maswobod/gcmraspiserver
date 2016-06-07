@@ -16,9 +16,22 @@ gpio.open(13, gpio.OUTPUT, gpio.LOW); //Blue
 gpio.open(15, gpio.OUTPUT, gpio.LOW); //Red
 
 // Setup pin for Button 1
-//gpio.setup(29, GPIO.IN, pull_up_down=GPIO.PUD_UP);
+gpio.open(29, gpio.INPUT, gpio.PULL_DOWN);
 // Setup pin for Button 2
-//gpio.setup(31, GPIO.IN, pull_up_down=GPIO.PUD_UP);
+gpio.open(31, gpio.INPUT, gpio.PULL_DOWN);
+
+var btnPsh = function(pin){
+   /*
+         * Interrupts aren't supported by the underlying hardware, so events
+         * may be missed during the 1ms poll window.  The best we can do is to
+         * print the current state after a event is detected.
+         */
+        var state = gpio.read(pin) ? 'pressed' : 'released';
+        console.log('Button event on P%d (button currently %s)', pin, state);
+};
+
+gpio.poll(29, btnPsh);
+gpio.poll(31, btnPsh);
 
 // Setup pins for poti
 var poti_channel = 7;  // Analog/Digital-Channel
