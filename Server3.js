@@ -40,7 +40,9 @@ function write() {
         if (err) throw err;
         console.log('Written to pin');
     });
-}
+};
+
+write();
 
 var TurnOn = function(port){
 	gpio.write(port, true, function(err) {
