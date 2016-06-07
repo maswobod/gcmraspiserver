@@ -6,14 +6,14 @@
 */
 
 //For the GPIO Ports
-var gpio = require('rpi-gpio');
+var gpio = require('rpio');
 //LED
-gpio.setup(7, gpio.DIR_OUT, write);
+gpio.open(7, gpio.OUTPUT, gpio.LOW);
 
 // Setup pins for RGB LED
-gpio.setup(11, gpio.DIR_OUT); //Green
-gpio.setup(13, gpio.DIR_OUT); //Blue
-gpio.setup(15, gpio.DIR_OUT); //Red
+gpio.open(11, gpio.OUTPUT); //Green
+gpio.open(13, gpio.OUTPUT); //Blue
+gpio.open(15, gpio.OUTPUT); //Red
 
 // Setup pin for Button 1
 //gpio.setup(29, GPIO.IN, pull_up_down=GPIO.PUD_UP);
@@ -27,39 +27,22 @@ var DIN_Pin = 19; // Digital in bcm 10
 var DOUT_Pin = 21;  // Digital out bcm 9
 var CS_Pin = 24; //Chip-Select bcm 8
 
-gpio.setup(CLK_Pin, gpio.DIR_OUT)
-gpio.setup(DIN_Pin, gpio.DIR_OUT)
-gpio.setup(CS_Pin, gpio.DIR_OUT)
-gpio.setup(DOUT_Pin, gpio.DIR_IN)
+gpio.open(CLK_Pin, gpio.OUTPUT);
+gpio.open(DIN_Pin, gpio.OUTPUT);
+gpio.open(CS_Pin, gpio.OUTPUT);
+gpio.open(DOUT_Pin, gpio.INPUT);
 
 // For average Measurement
 var anz = 3
 
-function write() {
-    gpio.write(7, true, function(err) {
-        if (err) throw err;
-        console.log('Written to pin');
-    });
-};
-
-write();
-
 var TurnOn = function(port){
-	gpio.write(port, true, function(err) {
-        if (err) throw err;
-        console.log('Written to pin');
-    });
+	gpio.write(port, gpio.HIGH);
 
 };
 
 var TurnOff = function(port){
-	gpio.write(port, false, function(err) {
-        if (err) throw err;
-        console.log('Written to pin');
-    });
+	gpio.write(port, gpio.LOW);
 };
-
-
 
 // Keep track of the chat clients
 var clients = [];
