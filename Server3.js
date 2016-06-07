@@ -8,7 +8,7 @@
 //For the GPIO Ports
 var gpio = require('rpi-gpio');
 //LED
-gpio.setup(7, gpio.DIR_OUT);
+gpio.setup(7, gpio.DIR_OUT, TurnOn(7));
 
 // Setup pins for RGB LED
 gpio.setup(11, gpio.DIR_OUT); //Green
