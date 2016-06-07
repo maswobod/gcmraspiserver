@@ -20,7 +20,7 @@ gpio.open(29, gpio.INPUT, gpio.PULL_DOWN);
 // Setup pin for Button 2
 //gpio.open(31, gpio.INPUT, gpio.PULL_DOWN);
 
-var btnPsh = function(pin){
+function pollcb(pin){
    /*
          * Interrupts aren't supported by the underlying hardware, so events
          * may be missed during the 1ms poll window.  The best we can do is to
@@ -30,7 +30,7 @@ var btnPsh = function(pin){
         console.log('Button event on P%d (button currently %s)', pin, state);
 };
 
-gpio.poll(29, btnPsh);
+gpio.poll(29, pollcb);
 //gpio.poll(31, btnPsh);
 
 // Setup pins for poti
