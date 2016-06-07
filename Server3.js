@@ -11,9 +11,9 @@ var gpio = require('rpio');
 gpio.open(7, gpio.OUTPUT, gpio.LOW);
 
 // Setup pins for RGB LED
-gpio.open(11, gpio.OUTPUT); //Green
-gpio.open(13, gpio.OUTPUT); //Blue
-gpio.open(15, gpio.OUTPUT); //Red
+gpio.open(11, gpio.OUTPUT, gpio.LOW); //Green
+gpio.open(13, gpio.OUTPUT, gpio.LOW); //Blue
+gpio.open(15, gpio.OUTPUT, gpio.LOW); //Red
 
 // Setup pin for Button 1
 //gpio.setup(29, GPIO.IN, pull_up_down=GPIO.PUD_UP);
@@ -27,9 +27,9 @@ var DIN_Pin = 19; // Digital in bcm 10
 var DOUT_Pin = 21;  // Digital out bcm 9
 var CS_Pin = 24; //Chip-Select bcm 8
 
-gpio.open(CLK_Pin, gpio.OUTPUT);
-gpio.open(DIN_Pin, gpio.OUTPUT);
-gpio.open(CS_Pin, gpio.OUTPUT);
+gpio.open(CLK_Pin, gpio.OUTPUT, gpio.LOW);
+gpio.open(DIN_Pin, gpio.OUTPUT, gpio.LOW);
+gpio.open(CS_Pin, gpio.OUTPUT, gpio.LOW);
 gpio.open(DOUT_Pin, gpio.INPUT);
 
 // For average Measurement
@@ -191,7 +191,7 @@ cl.on('stanza',
 
         switch (messageData.data.message) {
           case "TurnOn":
-            TurnOff(7);
+            TurnOn(7);
             break;
 
           case "TurnOff":
