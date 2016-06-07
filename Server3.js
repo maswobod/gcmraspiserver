@@ -5,60 +5,55 @@
 * TODO: Sensoren als Service
 */
 
-//To Send to RPi
-var net = require('net');
+//For the GPIO Ports
+var gpio = require('rpi-gpio');
+//LED
+gpio.setup(7, gpio.DIR_OUT);
 
-//To get Messages from RPils
-var net2 = require('net');
-var HOST = '192.168.1.110';
-var PORT = 12345;
+// Setup pins for RGB LED
+gpio.setup(11, GPIO.OUT); //Green
+gpio.setup(13, GPIO.OUT); //Blue
+gpio.setup(15, GPIO.OUT); //Red
+
+// Setup pin for Button 1
+gpio.setup(29, GPIO.IN, pull_up_down=GPIO.PUD_UP);
+// Setup pin for Button 2
+gpio.setup(31, GPIO.IN, pull_up_down=GPIO.PUD_UP);
+
+// Setup pins for poti
+var poti_channel = 7;  // Analog/Digital-Channel
+var CLK_Pin = 23; // Clock bcm 11
+var DIN_Pin = 19; // Digital in bcm 10
+var DOUT_Pin = 21;  // Digital out bcm 9
+var CS_Pin = 24; //Chip-Select bcm 8
+
+gpio.setup(CLK_Pin, GPIO.OUT)
+gpio.setup(DIN_Pin, GPIO.OUT)
+gpio.setup(CS_Pin, GPIO.OUT)
+gpio.setup(DOUT_Pin, GPIO.IN)
+
+// For average Measurement
+var anz = 3
+
+var TurnOn = function(port){
+	gpio.write(port, true, function(err) {
+        if (err) throw err;
+        console.log('Written to pin');
+    });
+
+};
+
+var TurnOff = function(port){
+	gpio.write(port, false, function(err) {
+        if (err) throw err;
+        console.log('Written to pin');
+    });
+};
+
+
 
 // Keep track of the chat clients
 var clients = [];
-
-net2.createServer(function (socket) {
-
-  // Identify this client
-  socket.name = socket.remoteAddress + ":" + socket.remotePort 
-
-  // Put this new client in the list
-  clients.push(socket);
-
-  // Send a nice welcome message and announce
-  socket.write("Thank you for Connection");
-
-  // Handle incoming messages from clients.
-  socket.on('data', function (data) {
-    console.log('Data incomming');
-    console.log('Received: ' + data);
-
-    var dataString = data.toString();
-
-    if(dataString.substring(0, 2) == "ND" ){
-      var timeIndex = data.indexOf("time")+5;
-      var timeToIndex = data.indexOf("|");
-      var valueIndex = data.indexOf("value") + 6;
-      var dataString = ""+ data;
-      var time = dataString.substring( timeIndex , timeToIndex);
-      var value = dataString.substring(valueIndex);
-      console.log("Time: " + time);
-      console.log("Value: " + value);
-
-      addDataToDB(time, value);
-
-      console.log(getDataFromDB("poti1"));
-    } else{
-      messageDevice("Thing info" ,""+data);
-    }
-    
-  });
-
-  // Remove the client from the list when it leaves
-  socket.on('end', function () {
-    clients.splice(clients.indexOf(socket), 1);
-    console.log("Connection with " + socket.name + " ended");
-  });
-}).listen(12345);
 
 //To send Messages
 var gcm = require('node-gcm');
@@ -149,27 +144,6 @@ var messageDevice = function(notiTitle, notiBody, data){
   });
 };
 
-//Function to message the Thing
-var messageThing = function(message){
-  var client = new net.Socket();
-
-  client.connect(12345, '192.168.1.111', function() {
-    console.log('Connected');
-    client.write(message);
-  });
-
-  client.on('data', function(data) {
-    console.log('Received: ' + data);
-    client.destroy();
-                
-  });
-
-  client.on('close', function() {
-    console.log('Connection closed');
-                 
-  });
-};
-
 //Set node-xmpp options.
 //Replace with your projectID in the jid and your API key in the password
 //The key settings for CCS are the last two to force SSL and Plain SASL auth.
@@ -225,27 +199,35 @@ cl.on('stanza',
 
         switch (messageData.data.message) {
           case "TurnOn":
-            messageThing('LED ON');
+            TurnOff(7);
             break;
 
           case "TurnOff":
-            messageThing('LED OFF');
+            TurnOff(7);
             break;
 
           case "RGB OFF":
-            messageThing('RGB OFF');
+            TurnOff(11);
+            TurnOff(13);
+            TurnOff(15);
             break;
 
           case "RGB RED":
-          messageThing('RGB RED');
+          	TurnOff(11);
+            TurnOff(13);
+            TurnOn(15);
           break;
               
           case "RGB BLUE":
-           messageThing('RGB BLUE');
+           	TurnOn(11);
+            TurnOff(13);
+            TurnOff(15);
           break;
 
           case "RGB GREEN":
-           messageThing('RGB GREEN');
+           	TurnOff(11);
+            TurnOn(13);
+            TurnOff(15);
           break;
 
           case "pottyData":
@@ -273,4 +255,5 @@ cl.on('error',
    console.log("Error occured:");
    console.error(e);
    console.error(e.children);
+   gpio.destroy()
  });
