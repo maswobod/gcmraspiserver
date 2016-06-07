@@ -11,14 +11,14 @@ var gpio = require('rpi-gpio');
 gpio.setup(7, gpio.DIR_OUT);
 
 // Setup pins for RGB LED
-gpio.setup(11, GPIO.OUT); //Green
-gpio.setup(13, GPIO.OUT); //Blue
-gpio.setup(15, GPIO.OUT); //Red
+gpio.setup(11, gpio.DIR_OUT); //Green
+gpio.setup(13, gpio.DIR_OUT); //Blue
+gpio.setup(15, gpio.DIR_OUT); //Red
 
 // Setup pin for Button 1
-gpio.setup(29, GPIO.IN, pull_up_down=GPIO.PUD_UP);
+//gpio.setup(29, GPIO.IN, pull_up_down=GPIO.PUD_UP);
 // Setup pin for Button 2
-gpio.setup(31, GPIO.IN, pull_up_down=GPIO.PUD_UP);
+//gpio.setup(31, GPIO.IN, pull_up_down=GPIO.PUD_UP);
 
 // Setup pins for poti
 var poti_channel = 7;  // Analog/Digital-Channel
@@ -27,10 +27,10 @@ var DIN_Pin = 19; // Digital in bcm 10
 var DOUT_Pin = 21;  // Digital out bcm 9
 var CS_Pin = 24; //Chip-Select bcm 8
 
-gpio.setup(CLK_Pin, GPIO.OUT)
-gpio.setup(DIN_Pin, GPIO.OUT)
-gpio.setup(CS_Pin, GPIO.OUT)
-gpio.setup(DOUT_Pin, GPIO.IN)
+gpio.setup(CLK_Pin, gpio.DIR_OUT)
+gpio.setup(DIN_Pin, gpio.DIR_OUT)
+gpio.setup(CS_Pin, gpio.DIR_OUT)
+gpio.setup(DOUT_Pin, gpio.DIR_IN)
 
 // For average Measurement
 var anz = 3
