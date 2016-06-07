@@ -8,7 +8,7 @@
 //For the GPIO Ports
 var gpio = require('rpi-gpio');
 //LED
-gpio.setup(7, gpio.DIR_OUT, TurnOn(7));
+gpio.setup(7, gpio.DIR_OUT, write);
 
 // Setup pins for RGB LED
 gpio.setup(11, gpio.DIR_OUT); //Green
@@ -34,6 +34,13 @@ gpio.setup(DOUT_Pin, gpio.DIR_IN)
 
 // For average Measurement
 var anz = 3
+
+function write() {
+    gpio.write(7, true, function(err) {
+        if (err) throw err;
+        console.log('Written to pin');
+    });
+}
 
 var TurnOn = function(port){
 	gpio.write(port, true, function(err) {
