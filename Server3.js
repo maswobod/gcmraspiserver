@@ -51,7 +51,7 @@ gpio.open(DOUT_Pin, gpio.INPUT);
 
 // For average Measurement
 var anz = 3
-
+*/
 var TurnOn = function(port){
 	gpio.write(port, gpio.HIGH);
 
