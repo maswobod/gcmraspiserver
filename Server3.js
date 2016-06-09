@@ -6,19 +6,28 @@
 */
 
 //For the GPIO Ports
-var gpio = require('rpio');
 //LED
-gpio.open(7, gpio.OUTPUT, gpio.LOW);
+var leds = require('rpio');
+leds.open(7, leds.OUTPUT, leds.LOW);
 
 // Setup pins for RGB LED
-gpio.open(11, gpio.OUTPUT, gpio.LOW); //Green
-gpio.open(13, gpio.OUTPUT, gpio.LOW); //Blue
-gpio.open(15, gpio.OUTPUT, gpio.LOW); //Red
+leds.open(11, leds.OUTPUT, leds.LOW); //Green
+leds.open(13, leds.OUTPUT, leds.LOW); //Blue
+leds.open(15, leds.OUTPUT, leds.LOW); //Red
 
+var TurnOn = function(port){
+	leds.write(port, leds.HIGH);
 
+};
 
+var TurnOff = function(port){
+	leds.write(port, leds.LOW);
+};
+
+//Buttons
+var btns = require('rpio');
 // Setup pin for Button 1
-gpio.open(29, gpio.INPUT, gpio.PULL_DOWN);
+btns.open(29, btns.INPUT, btns.PULL_DOWN);
 // Setup pin for Button 2
 //gpio.open(31, gpio.INPUT, gpio.PULL_DOWN);
 
@@ -28,12 +37,11 @@ function pollcb(pin){
     * may be missed during the 1ms poll window.  The best we can do is to
     * print the current state after a event is detected.
     */   
-    console.log('Its something');
-    var state = gpio.read(pin) ? 'pressed' : 'released';
+    var state = btns.read(pin) ? 'pressed' : 'released';
     console.log('Button event on P%d (button currently %s)', pin, state);
 };
 
-gpio.poll(29, pollcb);
+btns.poll(29, pollcb);
 //gpio.poll(31, btnPsh);
 
 // Setup pins for poti
@@ -52,14 +60,6 @@ gpio.open(DOUT_Pin, gpio.INPUT);
 // For average Measurement
 var anz = 3
 */
-var TurnOn = function(port){
-	gpio.write(port, gpio.HIGH);
-
-};
-
-var TurnOff = function(port){
-	gpio.write(port, gpio.LOW);
-};
 
 // Keep track of the chat clients
 var clients = [];
