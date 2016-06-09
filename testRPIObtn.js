@@ -1,6 +1,6 @@
 var rpio = require('rpio');
 
-rpio.open(29, rpio.INPUT, rpio.PULL_DOWN);
+rpio.open(29, rpio.INPUT);
 
 function pollcb(pin)
 {
