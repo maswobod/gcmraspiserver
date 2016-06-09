@@ -15,6 +15,10 @@ gpio.open(11, gpio.OUTPUT, gpio.LOW); //Green
 gpio.open(13, gpio.OUTPUT, gpio.LOW); //Blue
 gpio.open(15, gpio.OUTPUT, gpio.LOW); //Red
 
+gpio.open(29, gpio.INPUT);
+
+console.log('Pin 29 is currently set ' + (gpio.read(29) ? 'high' : 'low'));
+/*
 // Setup pin for Button 1
 gpio.open(29, gpio.INPUT, gpio.PULL_DOWN);
 // Setup pin for Button 2
@@ -22,19 +26,21 @@ gpio.open(29, gpio.INPUT, gpio.PULL_DOWN);
 
 function pollcb(pin){
    /*
-         * Interrupts aren't supported by the underlying hardware, so events
-         * may be missed during the 1ms poll window.  The best we can do is to
-         * print the current state after a event is detected.
-         */
-         console.log('Its something');
-        var state = gpio.read(pin) ? 'pressed' : 'released';
-        console.log('Button event on P%d (button currently %s)', pin, state);
+    * Interrupts aren't supported by the underlying hardware, so events
+    * may be missed during the 1ms poll window.  The best we can do is to
+    * print the current state after a event is detected.
+    */
+    /*
+    console.log('Its something');
+    var state = gpio.read(pin) ? 'pressed' : 'released';
+    console.log('Button event on P%d (button currently %s)', pin, state);
 };
 
-gpio.poll(29, pollcb, gpio.POLL_LOW);
+gpio.poll(29, pollcb, gpio.POLL_LOW);*/
 //gpio.poll(31, btnPsh);
 
 // Setup pins for poti
+/*
 var poti_channel = 7;  // Analog/Digital-Channel
 var CLK_Pin = 23; // Clock bcm 11
 var DIN_Pin = 19; // Digital in bcm 10
@@ -48,7 +54,7 @@ gpio.open(DOUT_Pin, gpio.INPUT);
 
 // For average Measurement
 var anz = 3
-
+*/
 var TurnOn = function(port){
 	gpio.write(port, gpio.HIGH);
 
