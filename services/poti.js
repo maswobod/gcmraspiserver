@@ -53,8 +53,12 @@ function getAnalogData(){
 
 	//Send Bits
 	for (var i = 0; i < 5; i++) {
-		rpio.write(DIN_Pin, bool(pushcmd & 0b10000));
-
+		if(pushcmd & 0b10000){
+			rpio.write(DIN_Pin, rpio.HIGH);
+		}else{
+			rpio.write(DIN_Pin, rpio.LOW);
+		}
+		
 		rpio.write(CLK_Pin, rpio.HIGH);
 		rpio.write(CLK_Pin, rpio.LOW);
 		pushcmd <<= 1;

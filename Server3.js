@@ -17,10 +17,8 @@ RGBLED.init(15,13,11);
 //Buttons Service Object
 var btn1 = require("./services/button");
 btn1.init(29);
-
 var btn2  = require("./services/button");
 btn2.init(31);
-
 
 // Setup pins for poti
 var poti = require("./services/poti");
