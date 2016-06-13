@@ -7,10 +7,10 @@ var LED = function(port){
 	leds.open(port, leds.OUTPUT, leds.LOW);
 };
 
-LED.prototype.trunOn = function{
+LED.prototype.trunOn = function(){
 	leds.write(port, leds.HIGH);
 };
 
-LED.prototype.trunOff = function{
+LED.prototype.trunOff = function(){
 	leds.write(port, leds.LOW);
 }
