@@ -39,7 +39,7 @@ temp.anz = 3;
  * PRIVATE METHODS.
  */ 
 
-function getTempData(){
+temp.prototype.getTempData = function(){
 	while(true){
 		//Get avrage measurement
 		for( var i = 0; i < temp.anz; i++){

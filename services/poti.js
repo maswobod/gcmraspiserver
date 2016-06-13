@@ -37,7 +37,7 @@ poti.anz = 3;
  * PRIVATE METHODS.
  */ 
 
-function getPotiData(){
+poti.prototype.getPotiData = function(){
 	while(true){
 		//Get avrage measurement
 		for( var i = 0; i < poti.anz; i++){
