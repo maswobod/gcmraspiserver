@@ -10,16 +10,14 @@ var tmp_value = 0;
 var lower_bound = 0;
 var upper_bound = 0;
 
-// ---
-// PUBLIC METHODS.
-// ---
-
 function poti()
 {
 	EventEmitter.call(this);
 }
 util.inherits(poti, EventEmitter);
-
+// ---
+// PUBLIC METHODS.
+// ---
 
 poti.prototype.init = function(  clk, din, dout, cs, channel ){
 	adwandler.init( clk, din, dout, cs, channel);
@@ -27,7 +25,7 @@ poti.prototype.init = function(  clk, din, dout, cs, channel ){
 	POTI();
 };
 
-/*
+/* 
  * Constants
  */
 poti.anz = 3;
