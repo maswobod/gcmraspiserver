@@ -66,6 +66,7 @@ adwandler.prototype.getAnalogData = function(){
 
 	}
 
+	console.log("Vale: " + poti_channel_value);
 	return poti_channel_value;
 };
 
