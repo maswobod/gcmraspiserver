@@ -21,7 +21,7 @@ util.inherits(poti, EventEmitter);
  */
 
 poti.prototype.init = function(  clk, din, dout, cs, channel ){
-	adwandler.blabla( clk, din, dout, cs, channel);
+	adwandler.init( clk, din, dout, cs, channel);
 	getPotiData();
 	POTI();
 };
@@ -29,7 +29,7 @@ poti.prototype.init = function(  clk, din, dout, cs, channel ){
 /* 
  * Constants
  */
-
+ 
 poti.anz = 3;
 
 /*
