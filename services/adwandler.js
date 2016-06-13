@@ -15,9 +15,9 @@ function adwandler()
 }
 util.inherits(adwandler, EventEmitter);
 
-// ---
-// PUBLIC METHODS.
-// ---
+/*
+ * PUBLIC METHODS.
+ */
 
 adwandler.prototype.init = function( clk, din, dout, cs, channel){
 	CLK_Pin = clk;

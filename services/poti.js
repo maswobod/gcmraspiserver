@@ -15,9 +15,10 @@ function poti()
 	EventEmitter.call(this);
 }
 util.inherits(poti, EventEmitter);
-// ---
-// PUBLIC METHODS.
-// ---
+
+/*
+ * PUBLIC METHODS.
+ */
 
 poti.prototype.init = function(  clk, din, dout, cs, channel ){
 	adwandler.init( clk, din, dout, cs, channel);
@@ -28,11 +29,12 @@ poti.prototype.init = function(  clk, din, dout, cs, channel ){
 /* 
  * Constants
  */
+ 
 poti.anz = 3;
 
-// ---
-// PRIVATE METHODS.
-// ---
+/*
+ * PRIVATE METHODS.
+ */ 
 
 function getPotiData(){
 	while(true){

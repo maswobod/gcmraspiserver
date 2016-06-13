@@ -4,9 +4,9 @@ var rpio = require('rpio');
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;
 
-// ---
-// PUBLIC METHODS.
-// ---
+/*
+ * PUBLIC METHODS.
+ */
 
 function led()
 {
@@ -21,8 +21,6 @@ led.prototype.init = function( led_port ){
 	LED();
 };
 
-
-
 led.prototype.turnOn = function(){
 	console.log("Turn On: " + port);
 	rpio.write(port, rpio.HIGH);
@@ -33,9 +31,9 @@ led.prototype.turnOff = function(){
 	rpio.write(port, rpio.LOW);
 };
 
-// ---
-// PRIVATE METHODS.
-// ---
+/*
+ * PRIVATE METHODS.
+ */ 
 
 function LED(){
 	console.log("LED defined");

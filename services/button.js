@@ -4,9 +4,9 @@ var rpio = require('rpio');
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;
 
-// ---
-// PUBLIC METHODS.
-// ---
+/*
+ * PUBLIC METHODS.
+ */
 
 function button()
 {
@@ -23,9 +23,9 @@ button.prototype.init = function( btn_port ){
 	BTN();
 };
 
-// ---
-// PRIVATE METHODS.
-// ---
+/*
+ * PRIVATE METHODS.
+ */ 
 
 function pollcb(pin){
    /*
