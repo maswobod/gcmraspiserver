@@ -11,10 +11,12 @@ module.exports = function LEDFactory( port ){
     // ---
 
 	function trunOn(){
+		console.log("Turn On: " + port);
 		leds.write(port, leds.HIGH);
 	}
 
 	function turnOff(){
+		console.log("Turn Off: " + port);
 		leds.write(port, leds.LOW);
 	}
 
