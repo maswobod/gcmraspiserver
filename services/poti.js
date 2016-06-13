@@ -1,7 +1,7 @@
 //Poti Module
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;
-var adwandler = ('adwandler');
+var adwandler = ('./adwandler');
 
 var old_voltage = 0;
 var voltage = 0;
@@ -29,7 +29,7 @@ poti.prototype.init = function(  clk, din, dout, cs, channel ){
 /* 
  * Constants
  */
- 
+
 poti.anz = 3;
 
 /*
@@ -53,7 +53,7 @@ function getPotiData(){
 		upper_bound = old_voltage+0.3;
 
 		if (voltage < lower_bound || voltage > upper_bound) {
-			console.log("MEssage Server");
+			console.log("Message Server");
 		}
 	}
 }
