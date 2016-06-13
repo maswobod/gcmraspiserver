@@ -10,30 +10,17 @@ var LED = require('./services/led');
 //Init LED Port 7
 LED.init(7);
 
-
 //RGB LED Service
 var RGBLED = require('./services/rgbled');
 RGBLED.init(15,13,11);
 
-//Buttons
-var btns = require('rpio');
-// Setup pin for Button 1
-btns.open(29, btns.INPUT, btns.PULL_DOWN);
-// Setup pin for Button 2
-//gpio.open(31, gpio.INPUT, gpio.PULL_DOWN);
+//Buttons Service Object
+var btn1 = require("./services/btn");
+btn1.init(29);
 
-function pollcb(pin){
-   /*
-    * Interrupts aren't supported by the underlying hardware, so events
-    * may be missed during the 1ms poll window.  The best we can do is to
-    * print the current state after a event is detected.
-    */   
-    var state = btns.read(pin) ? 'pressed' : 'released';
-    console.log('Button event on P%d (button currently %s)', pin, state);
-};
+var btn2  = require("./services/btn");
+btn2.init(31);
 
-btns.poll(29, pollcb);
-//gpio.poll(31, btnPsh);
 
 // Setup pins for poti
 /*
