@@ -26,7 +26,6 @@ util.inherits(temp, EventEmitter);
 temp.prototype.init = function(  clk, din, dout, cs, channel ){
 	adwandler.init( clk, din, dout, cs, channel);
 	database.init();
-	getPotiData();
 	TEMP();
 };
 

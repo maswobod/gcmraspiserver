@@ -24,7 +24,6 @@ util.inherits(poti, EventEmitter);
 poti.prototype.init = function(  clk, din, dout, cs, channel ){
 	adwandler.init( clk, din, dout, cs, channel);
 	database.init();
-	getPotiData();
 	POTI();
 };
 
