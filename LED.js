@@ -1,10 +1,22 @@
 
+var binding = require('bindings')('led');
 var port; 
 var rpio = require('rpio');
+var EventEmitter = require('events').EventEmitter;
 
 // ---
 // PUBLIC METHODS.
 // ---
+
+/*
+ * Event Emitter gloop.
+ */
+function led()
+{
+	EventEmitter.call(this);
+}
+util.inherits(rpio, EventEmitter);
+
 
 led.prototype.init = function( port ){
 	rpio.open(port, rpio.OUTPUT, rpio.LOW);
