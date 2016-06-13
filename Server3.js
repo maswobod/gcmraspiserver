@@ -211,7 +211,7 @@ cl.on('stanza',
             break;
 
           case "RGB RED":
-            RGBLED.control("OFF");
+            RGBLED.control("RED");
           break;
               
           case "RGB BLUE":
