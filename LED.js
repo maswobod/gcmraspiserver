@@ -1,16 +1,15 @@
-var leds = require('rpio');
-var port;
 
+module.exports = function LED(port){
 
-var LED = function(port){
-	this.port = port;
+	var leds = require('rpio');
 	leds.open(port, leds.OUTPUT, leds.LOW);
+
+	function trunOn(){
+		leds.write(port, leds.HIGH);
+	}
+
+	function turnOff(){
+		leds.write(port, leds.LOW);
+	}
 };
 
-LED.prototype.trunOn = function(){
-	leds.write(port, leds.HIGH);
-};
-
-LED.prototype.trunOff = function(){
-	leds.write(port, leds.LOW);
-}
