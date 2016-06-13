@@ -24,12 +24,13 @@ led.prototype.init = function( port ){
 };
 
 
-led.prototype.trunOn = function(opt){
+
+led.prototype.turnOn = function(){
 	console.log("Turn On: " + port);
 	rpio.write(port, rpio.HIGH);
 };
 
-led.prototype.turnOff = function(opt){
+led.prototype.turnOff = function(){
 	console.log("Turn Off: " + port);
 	rpio.write(port, rpio.LOW);
 };
