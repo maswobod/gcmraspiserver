@@ -1,7 +1,7 @@
 //RGB LED Module
-var rpio = require('rpio');
-var util = require('util');
-var EventEmitter = require('events').EventEmitter;
+var rpio = require('../rpio');
+var util = require('../util');
+var EventEmitter = require('../events').EventEmitter;
 
 var RED;
 var GREEN;
