@@ -1,24 +1,26 @@
 
 var port; 
-var leds = require('rpio');
-
-function init( port ){
-	leds.open(port, leds.OUTPUT, leds.LOW);
-	return( LED() );
-};
+var rpio = require('rpio');
 
 // ---
 // PUBLIC METHODS.
 // ---
 
-function trunOn(){
-	console.log("Turn On: " + port);
-	leds.write(port, leds.HIGH);
+led.prototype.init = function( port ){
+	rpio.open(port, rpio.OUTPUT, rpio.LOW);
+	return( LED() );
 };
 
-function turnOff(){
+
+
+led.prototype.trunOn = function(){
+	console.log("Turn On: " + port);
+	rpio.write(port, rpio.HIGH);
+};
+
+led.prototype.turnOff = function(){
 	console.log("Turn Off: " + port);
-	leds.write(port, leds.LOW);
+	rpio.write(port, rpio.LOW);
 };
 
 // ---
