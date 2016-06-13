@@ -13,7 +13,7 @@ var tmp_value = 0;
 var lower_bound = 0;
 var upper_bound = 0;
 
-function poti()
+function temp()
 {
 	EventEmitter.call(this);
 }
