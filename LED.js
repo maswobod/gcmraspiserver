@@ -43,4 +43,5 @@ function LED(){
 	console.log("LED defined");
 };
 
+module.exports = new led;
 
