@@ -21,9 +21,7 @@ util.inherits(rgbled, EventEmitter);
  * Init the RGB Ports
  */
 rgbled.prototype.init = function( red, green, blue ){
-	rpio.open(red, rpio.OUTPUT, rpio.LOW); //Green
-	rpio.open(green, rpio.OUTPUT, rpio.LOW); //Blue
-	rpio.open(blue, rpio.OUTPUT, rpio.LOW); //Red
+	
 
 	RED = red;
 	GREEN = green;
