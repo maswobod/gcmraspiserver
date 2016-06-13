@@ -1,5 +1,4 @@
 
-var binding = require('bindings')('led');
 var port; 
 var rpio = require('rpio');
 var EventEmitter = require('events').EventEmitter;
