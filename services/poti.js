@@ -39,7 +39,7 @@ poti.anz = 3;
 function getPotiData(){
 	while(true){
 		//Get avrage measurement
-		for( int i = 0; i < anz; i++){
+		for( var i = 0; i < anz; i++){
 			setTimeout(function(){
 				var tmp = adwandler.getPotiData();
 				sum += tmp;
