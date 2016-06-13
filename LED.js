@@ -18,9 +18,9 @@ function led()
 util.inherits(led, EventEmitter);
 
 
-led.prototype.init = function( port ){
+led.prototype.init = function( led_port ){
 	rpio.open(port, rpio.OUTPUT, rpio.LOW);
-	port = port;
+	port = led_port;
 	LED();
 };
 
