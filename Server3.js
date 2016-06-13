@@ -13,7 +13,7 @@ LED.init(7);
 
 //RGB LED Service
 var RGBLED = require('./services/rgbled');
-RGBLED.init(15,11,13);
+RGBLED.init(15,13,11);
 
 //Buttons
 var btns = require('rpio');
