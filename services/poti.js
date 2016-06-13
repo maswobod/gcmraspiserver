@@ -47,7 +47,7 @@ function getPotiData(){
 				sum += tmp;
 			}, 500);
 		}
-		tmp_value = sum/anz;
+		tmp_value = sum/poti.anz;
 
 		voltage = -0.003222*tmp_value+3.3;
 

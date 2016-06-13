@@ -43,13 +43,13 @@ temp.anz = 3;
 function getTempData(){
 	while(true){
 		//Get avrage measurement
-		for( var i = 0; i < anz; i++){
+		for( var i = 0; i < temp.anz; i++){
 			setTimeout(function(){
 				var tmp = adwandler.getPotiData();
 				sum += tmp;
 			}, 500);
 		}
-		tmp_value = sum/anz;
+		tmp_value = sum/temp.anz;
 
 		voltage = -0.003222*tmp_value+3.3;
 
