@@ -15,12 +15,12 @@ function led()
 {
 	EventEmitter.call(this);
 }
-util.inherits(rpio, EventEmitter);
+util.inherits(led, EventEmitter);
 
 
 led.prototype.init = function( port ){
 	rpio.open(port, rpio.OUTPUT, rpio.LOW);
-	return( LED() );
+	LED();
 };
 
 
