@@ -17,6 +17,12 @@ function poti()
 }
 util.inherits(poti, EventEmitter);
 
+/* 
+ * Constants
+ */
+
+poti.anz = 3;
+
 /*
  * PUBLIC METHODS.
  */
@@ -27,24 +33,13 @@ poti.prototype.init = function(  clk, din, dout, cs, channel ){
 	POTI();
 };
 
-/* 
- * Constants
- */
-
-poti.anz = 3;
-
-/*
- * PRIVATE METHODS.
- */ 
-
 poti.prototype.getPotiData = function(){
 	while(true){
 		//Get avrage measurement
 		for( var i = 0; i < poti.anz; i++){
-			setTimeout(function(){
-				var tmp = adwandler.getPotiData();
-				sum += tmp;
-			}, 500);
+			var tmp = adwandler.getPotiData();
+			sum += tmp;
+			sleep(500);			
 		}
 		tmp_value = sum/poti.anz;
 
@@ -64,8 +59,21 @@ poti.prototype.getPotiData = function(){
 	}
 }
 
+/*
+ * PRIVATE METHODS.
+ */ 
+
 function POTI(){
 	console.log("Poti defined");
 };
+
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
 
 module.exports = new poti;

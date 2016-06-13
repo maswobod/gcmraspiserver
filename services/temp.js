@@ -19,6 +19,12 @@ function temp()
 }
 util.inherits(temp, EventEmitter);
 
+/* 
+ * Constants
+ */
+
+temp.anz = 3;
+
 /*
  * PUBLIC METHODS.
  */
@@ -29,24 +35,14 @@ temp.prototype.init = function(  clk, din, dout, cs, channel ){
 	TEMP();
 };
 
-/* 
- * Constants
- */
-
-temp.anz = 3;
-
-/*
- * PRIVATE METHODS.
- */ 
-
 temp.prototype.getTempData = function(){
 	while(true){
 		//Get avrage measurement
 		for( var i = 0; i < temp.anz; i++){
-			setTimeout(function(){
-				var tmp = adwandler.getPotiData();
-				sum += tmp;
-			}, 500);
+			var tmp = adwandler.getPotiData();
+			sum += tmp;
+			sleep(500);
+			
 		}
 		tmp_value = sum/temp.anz;
 
@@ -70,8 +66,21 @@ temp.prototype.getTempData = function(){
 	}
 }
 
+/*
+ * PRIVATE METHODS.
+ */ 
+
 function TEMP(){
 	console.log("Poti defined");
 };
+
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
 
 module.exports = new temp;
