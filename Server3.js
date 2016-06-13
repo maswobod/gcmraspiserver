@@ -15,13 +15,13 @@ var RGBLED = require('./services/rgbled');
 RGBLED.init(15,13,11);
 
 //Buttons Service Object
-var btn1 = require("./services/button");
+var btn1 = require('./services/button');
 btn1.init(29);
-var btn2  = require("./services/button");
+var btn2  = require('./services/button');
 btn2.init(31);
 
-// Setup pins for poti
-var poti = require("./services/poti");
+//Poti Service Object
+var poti = require('./services/poti');
 /*
  *Init like this:
  *var poti_channel = 7;  // Analog/Digital-Channel
@@ -33,6 +33,13 @@ var poti = require("./services/poti");
 poti.init(23,19,21,24,7);
 poti.getPotiData();
 
+//Temp Service Object
+//var temp = require('./services/temp');
+//temp.init(23,19,21,24,6);
+
+//Database Service Object
+var database = require('./services/database');
+database.init();
 
 // Keep track of the chat clients
 var clients = [];
@@ -49,60 +56,6 @@ var regTokens = ['cAo_ls3Z31A:APA91bH_MFXtuU4KZcCDTLy6EIfGW90BGmS5_K1W_fF8G0mb5X
 //To recive Messages
 var xmpp = require('node-xmpp-client');
  
-//To keep Poti Data Persistant (MongoDB)
-var mongodb = require('mongodb');
-var MongoClient = mongodb.MongoClient;
-var url = 'mongodb://localhost:27017/test_1';
-
-//Function to insert new Poti Data
-var addDataToDB = function(measTime, newValue){
-  MongoClient.connect(url, function(err, db){
-    if(err){
-      console.log('Unable to connect to the mongoDB server. Error:', err);
-    }else{
-      console.log('Connection established to', url);
-
-      var collection = db.collection("poti1");
-
-      var newPotiData = {Time: measTime, Value: newValue};
-      collection.insert(newPotiData, function(err, result){
-        if(err){
-          console.log(err);
-        } else {
-          console.log('Inserted %d documents into the "users" collection. The documents inserted with "_id" are:', result.length, result);
-        }
-        //Close connection
-        db.close();  
-      });
-    }
-  })
-};
-
-var getDataFromDB = function(collectionName){
-  MongoClient.connect(url, function(err, db){
-    if(err){
-      console.log('Unable to connect to the mongoDB server. Error:', err);
-    }else{
-      console.log('Connection established to', url);
-
-      var collection = db.collection(collectionName);
-
-      collection.find().toArray(function (err, result) {
-        if (err) {
-          console.log(err);
-        } else if (result.length) {
-          var jString = JSON.stringify(result);
-          messageDevice("New Pottydata", "New Pottydata accessable", jString);
-        } else {
-          console.log('No document(s) found with defined "find" criteria!');
-        }
-        //Close connection
-        db.close();
-      });
-    }
-  })
-};
-
 //Function to message the Device
 var messageDevice = function(notiTitle, notiBody, data){
       //The Message itself
@@ -205,7 +158,7 @@ cl.on('stanza',
           break;
 
           case "pottyData":
-            getDataFromDB("poti1");
+            database.getDataFromDB("poti1");
             break;
 
          default:

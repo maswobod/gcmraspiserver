@@ -1,10 +1,12 @@
+//Temp Module
 //Poti Module
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;
 var adwandler = require('./services/adwandler');
 var database = require('./services/database');
 
-var old_voltage = 0;
+var old_tmperature = 0;
+var temperature = 0;
 var voltage = 0;
 var sum = 0;
 var tmp_value = 0;
@@ -15,30 +17,30 @@ function poti()
 {
 	EventEmitter.call(this);
 }
-util.inherits(poti, EventEmitter);
+util.inherits(temp, EventEmitter);
 
 /*
  * PUBLIC METHODS.
  */
 
-poti.prototype.init = function(  clk, din, dout, cs, channel ){
+temp.prototype.init = function(  clk, din, dout, cs, channel ){
 	adwandler.init( clk, din, dout, cs, channel);
 	database.init();
 	getPotiData();
-	POTI();
+	TEMP();
 };
 
 /* 
  * Constants
  */
 
-poti.anz = 3;
+temp.anz = 3;
 
 /*
  * PRIVATE METHODS.
  */ 
 
-function getPotiData(){
+function getTempData(){
 	while(true){
 		//Get avrage measurement
 		for( var i = 0; i < anz; i++){
@@ -51,22 +53,26 @@ function getPotiData(){
 
 		voltage = -0.003222*tmp_value+3.3;
 
-		lower_bound = old_voltage-0.3;
-		upper_bound = old_voltage+0.3;
+		/*
+		 * Every 10 Milivolt = 1 Celcius
+		 */
+		temperature = voltage*100;
+		lower_bound = old_tmperature-0.5;
+		upper_bound = old_tmperature+0.5;
 
-		if (voltage < lower_bound || voltage > upper_bound) {
-			//Add Data to Database
+		if (temperature < lower_bound || temperature > upper_bound) {
 			var timestamp = new Date().toLocaleTimeString('en-GB', { hour: "numeric", 
                                              minute: "numeric"});
-			database.addDataToDB("poti1",timestamp, voltage);
-			console.log("Message Server: " + voltage);
+
+			database.addDataToDB("temp1",timestamp, temperature);
+			console.log("Message Server: " + temperature);
 		}
-		old_voltage = voltage;
+		old_tmperature = temperature;
 	}
 }
 
-function POTI(){
+function TEMP(){
 	console.log("Poti defined");
 };
 
-module.exports = new poti;
+module.exports = new temp;
