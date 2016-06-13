@@ -4,4 +4,4 @@
 var LED = require('./LED');
 
 
-LED.TurnOn();
+LED.turnOn();
