@@ -31,6 +31,7 @@ var poti = require("./services/poti");
  *var CS_Pin = 24; //Chip-Select bcm 8
  */
 poti.init(23,19,21,24,7);
+poti.getPotiData();
 
 
 // Keep track of the chat clients
