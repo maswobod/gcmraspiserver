@@ -1,7 +1,7 @@
 //Poti Module
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;
-var adwandler = ('./adwandler');
+var adwandler = ('./services/adwandler');
 
 var old_voltage = 0;
 var voltage = 0;
