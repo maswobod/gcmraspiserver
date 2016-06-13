@@ -17,7 +17,9 @@ function rgbled()
 }
 util.inherits(rgbled, EventEmitter);
 
-
+/*
+ * Init the RGB Ports
+ */
 rgbled.prototype.init = function( red, green, blue ){
 	rpio.open(red, rpio.OUTPUT, rpio.LOW); //Green
 	rpio.open(green, rpio.OUTPUT, rpio.LOW); //Blue
@@ -29,6 +31,9 @@ rgbled.prototype.init = function( red, green, blue ){
 	LED();
 };
 
+/*
+ * Change the Colors of the RGB of turn it off
+ */
 rgbled.prototype.control = function(color){
 	switch (color) {     
 	    case "OFF":
