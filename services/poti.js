@@ -1,7 +1,7 @@
 //Poti Module
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;
-var adwandler = ('adwandler');
+
 
 var old_voltage = 0;
 var voltage = 0;
@@ -21,6 +21,7 @@ util.inherits(poti, EventEmitter);
  */
 
 poti.prototype.init = function(  clk, din, dout, cs, channel ){
+	var adwandler = ('adwandler');
 	adwandler.init( clk, din, dout, cs, channel);
 	getPotiData();
 	POTI();
@@ -29,7 +30,7 @@ poti.prototype.init = function(  clk, din, dout, cs, channel ){
 /* 
  * Constants
  */
- 
+
 poti.anz = 3;
 
 /*
