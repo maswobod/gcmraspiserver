@@ -23,21 +23,17 @@ btn2.init(31);
 
 
 // Setup pins for poti
+var poti = require("./services/poti");
 /*
-var poti_channel = 7;  // Analog/Digital-Channel
-var CLK_Pin = 23; // Clock bcm 11
-var DIN_Pin = 19; // Digital in bcm 10
-var DOUT_Pin = 21;  // Digital out bcm 9
-var CS_Pin = 24; //Chip-Select bcm 8
+ *Init like this:
+ *var poti_channel = 7;  // Analog/Digital-Channel
+ *var CLK_Pin = 23; // Clock bcm 11
+ *var DIN_Pin = 19; // Digital in bcm 10
+ *var DOUT_Pin = 21;  // Digital out bcm 9
+ *var CS_Pin = 24; //Chip-Select bcm 8
+ */
+poti.init(23,19,21,24,7);
 
-gpio.open(CLK_Pin, gpio.OUTPUT, gpio.LOW);
-gpio.open(DIN_Pin, gpio.OUTPUT, gpio.LOW);
-gpio.open(CS_Pin, gpio.OUTPUT, gpio.LOW);
-gpio.open(DOUT_Pin, gpio.INPUT);
-
-// For average Measurement
-var anz = 3
-*/
 
 // Keep track of the chat clients
 var clients = [];

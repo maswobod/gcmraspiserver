@@ -1,5 +1,4 @@
 // Button Module
-//LED Module
 var port; 
 var rpio = require('rpio');
 var util = require('util');
