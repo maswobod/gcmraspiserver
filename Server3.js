@@ -21,7 +21,7 @@ var btn2  = require("./services/button");
 btn2.init(31);
 
 // Setup pins for poti
-var poti = require("./services/poti");
+//var poti = require("./services/poti");
 /*
  *Init like this:
  *var poti_channel = 7;  // Analog/Digital-Channel
@@ -30,8 +30,11 @@ var poti = require("./services/poti");
  *var DOUT_Pin = 21;  // Digital out bcm 9
  *var CS_Pin = 24; //Chip-Select bcm 8
  */
+//poti.init(23,19,21,24,7);
+//poti.getPotiData();
+var poti = require("./services/adwandler");
 poti.init(23,19,21,24,7);
-poti.getPotiData();
+poti.ggetAnalogData();
 
 
 // Keep track of the chat clients
