@@ -6,13 +6,13 @@
 */
 
 //LED Service Object
-var LED = require('./led');
+var LED = require('./services/led');
 //Init LED Port 7
 LED.init(7);
 
 
 //RGB LED Service
-var RGBLED = require('./rgbled');
+var RGBLED = require('./services/rgbled');
 RGBLED.init(15,11,13);
 
 //Buttons
