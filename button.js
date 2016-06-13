@@ -9,14 +9,14 @@ var EventEmitter = require('events').EventEmitter;
 // PUBLIC METHODS.
 // ---
 
-function btn()
+function button()
 {
 	EventEmitter.call(this);
 }
-util.inherits(btn, EventEmitter);
+util.inherits(button, EventEmitter);
 
 
-btn.prototype.init = function( btn_port ){
+button.prototype.init = function( btn_port ){
 	rpio.open(btn_port, rpio.INPUT, rpio.PULL_DOWN);
 	port = btn_port;
 	rpio.poll(btn_port, pollcb);
@@ -42,5 +42,5 @@ function BTN(){
 	console.log("Button defined");
 };
 
-module.exports = new btn;
+module.exports = new button;
 
