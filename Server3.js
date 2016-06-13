@@ -5,24 +5,15 @@
 * TODO: Sensoren als Service
 */
 
-//For the GPIO Ports
-//LED
-var leds = require('rpio');
-leds.open(7, leds.OUTPUT, leds.LOW);
+//LED Service Object
+var LED = require('./led');
+//Init LED Port 7
+LED.init(7);
 
-// Setup pins for RGB LED
-leds.open(11, leds.OUTPUT, leds.LOW); //Green
-leds.open(13, leds.OUTPUT, leds.LOW); //Blue
-leds.open(15, leds.OUTPUT, leds.LOW); //Red
 
-var TurnOn = function(port){
-	leds.write(port, leds.HIGH);
-
-};
-
-var TurnOff = function(port){
-	leds.write(port, leds.LOW);
-};
+//RGB LED Service
+var RGBLED = require('./rgbled');
+RGBLED.init(15,11,13);
 
 //Buttons
 var btns = require('rpio');
@@ -208,35 +199,27 @@ cl.on('stanza',
 
         switch (messageData.data.message) {
           case "TurnOn":
-            TurnOn(7);
+            LED.turnOn();
             break;
 
           case "TurnOff":
-            TurnOff(7);
+            LED.turnOff();
             break;
 
           case "RGB OFF":
-            TurnOff(11);
-            TurnOff(13);
-            TurnOff(15);
+            RGBLED.control("OFF");
             break;
 
           case "RGB RED":
-          	TurnOff(11);
-            TurnOff(13);
-            TurnOn(15);
+            RGBLED.control("OFF");
           break;
               
           case "RGB BLUE":
-           	TurnOn(11);
-            TurnOff(13);
-            TurnOff(15);
+            RGBLED.control("BLUE");
           break;
 
           case "RGB GREEN":
-           	TurnOff(11);
-            TurnOn(13);
-            TurnOff(15);
+            RGBLED.control("GREEN");
           break;
 
           case "pottyData":

@@ -1,4 +1,4 @@
-
+//LED Module
 var port; 
 var rpio = require('rpio');
 var util = require('util');
@@ -8,9 +8,6 @@ var EventEmitter = require('events').EventEmitter;
 // PUBLIC METHODS.
 // ---
 
-/*
- * Event Emitter gloop.
- */
 function led()
 {
 	EventEmitter.call(this);
