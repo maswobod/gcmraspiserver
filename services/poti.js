@@ -37,7 +37,7 @@ poti.prototype.getPotiData = function(){
 	while(true){
 		//Get avrage measurement
 		for( var i = 0; i < poti.anz; i++){
-			var tmp = adwandler.getPotiData();
+			var tmp = adwandler.getAnalogData();
 			sum += tmp;
 			sleep(500);			
 		}

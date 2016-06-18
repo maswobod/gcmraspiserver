@@ -39,7 +39,7 @@ temp.prototype.getTempData = function(){
 	//while(true){
 		//Get avrage measurement
 		for( var i = 0; i < temp.anz; i++){
-			var tmp = adwandler.getPotiData();
+			var tmp = adwandler.getAnalogData();
 			sum += tmp;
 			sleep(500);
 			
