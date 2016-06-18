@@ -36,7 +36,7 @@ temp.prototype.init = function(  clk, din, dout, cs, channel ){
 };
 
 temp.prototype.getTempData = function(){
-	while(true){
+	//while(true){
 		//Get avrage measurement
 		for( var i = 0; i < temp.anz; i++){
 			var tmp = adwandler.getPotiData();
@@ -47,11 +47,13 @@ temp.prototype.getTempData = function(){
 		tmp_value = sum/temp.anz;
 
 		voltage = -0.003222*tmp_value+3.3;
+		//Invert voltage gor temeprature
+		var invVol = 3.3 - voltage;
 
 		/*
 		 * Every 10 Milivolt = 1 Celcius
 		 */
-		temperature = voltage*100;
+		temperature = invVol*100;
 		lower_bound = old_tmperature-0.5;
 		upper_bound = old_tmperature+0.5;
 
@@ -63,7 +65,7 @@ temp.prototype.getTempData = function(){
 			console.log("Message Server: " + temperature);
 		}
 		old_tmperature = temperature;
-	}
+	//}
 }
 
 /*

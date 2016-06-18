@@ -35,7 +35,7 @@ var poti = require('./services/poti');
 
 //Temp Service Object
 var temp = require('./services/temp');
-temp.init(23,19,21,24,6);
+temp.init(23,19,21,24,5);
 temp.getTempData();
 
 //Database Service Object
