@@ -32,7 +32,6 @@ var poti = require('./services/poti');
  */
 poti.init(23,19,21,24,7);
 poti.getPotiData();
-poti.getPotiData();
 
 //Temp Service Object
 /*
