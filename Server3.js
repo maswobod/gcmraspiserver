@@ -30,15 +30,17 @@ var poti = require('./services/poti');
  *var DOUT_Pin = 21;  // Digital out bcm 9
  *var CS_Pin = 24; //Chip-Select bcm 8
  */
-//poti.init(23,19,21,24,7);
-//poti.getPotiData();
+poti.init(23,19,21,24,7);
+poti.getPotiData();
+poti.getPotiData();
 
 //Temp Service Object
+/*
 var temp = require('./services/temp');
 temp.init(23,19,21,24,5);
 temp.getTempData();
 temp.getTempData();
-
+*/
 //Database Service Object
 var database = require('./services/database');
 database.init();
