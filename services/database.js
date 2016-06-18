@@ -31,7 +31,7 @@ database.prototype.addDataToDB = function(collection, measTime, newValue){
     }else{
       console.log('Connection established to', url);
 
-      var collection = db.collection(String(collection);
+      var collection = db.collection(String(collection));
 
       var newPotiData = {Time: measTime, Value: newValue};
       collection.insert(newPotiData, function(err, result){
