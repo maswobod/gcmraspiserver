@@ -36,7 +36,7 @@ temp.prototype.init = function(  clk, din, dout, cs, channel ){
 };
 
 temp.prototype.getTempData = function(){
-	//while(true){
+	while(true){
 		//Get avrage measurement
 		for( var i = 0; i < temp.anz; i++){
 			var tmp = adwandler.getAnalogData();
@@ -57,7 +57,7 @@ temp.prototype.getTempData = function(){
 		lower_bound = old_tmperature-0.5;
 		upper_bound = old_tmperature+0.5;
 
-		if (temperature < lower_bound || temperature > upper_bound) {
+		if (temperature < lower_bound && temperature > upper_bound) {
 			var timestamp = new Date().toLocaleTimeString('en-GB', { hour: "numeric", 
                                              minute: "numeric"});
 
@@ -65,7 +65,7 @@ temp.prototype.getTempData = function(){
 			console.log("Message Server: " + temperature);
 		}
 		old_tmperature = temperature;
-	//}
+	}
 }
 
 /*

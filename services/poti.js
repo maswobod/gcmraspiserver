@@ -48,7 +48,7 @@ poti.prototype.getPotiData = function(){
 		lower_bound = old_voltage-0.3;
 		upper_bound = old_voltage+0.3;
 
-		if (voltage < lower_bound || voltage > upper_bound) {
+		if (voltage < lower_bound && voltage > upper_bound) {
 			//Add Data to Database
 			var timestamp = new Date().toLocaleTimeString('en-GB', { hour: "numeric", 
                                              minute: "numeric"});
