@@ -37,8 +37,8 @@ var poti = require('./services/poti');
 var temp = require('./services/temp');
 temp.init(23,19,21,24,5);
 temp.getTempData();
+console.log("Main file running");
 
-console.log("Check if not lost in while");
 //Database Service Object
 var database = require('./services/database');
 database.init();

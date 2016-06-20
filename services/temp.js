@@ -2,8 +2,7 @@
 //Poti Module
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;
-var adwandler = require('./adwandler');
-var database = require('./database');
+
 
 var old_tmperature = 0;
 var temperature = 0;
@@ -23,31 +22,34 @@ util.inherits(temp, EventEmitter);
  * Constants
  */
 
-temp.anz = 3;
-
-/*
- * PUBLIC METHODS.
- */
-
-temp.prototype.init = function(  clk, din, dout, cs, channel ){
-	adwandler.init( clk, din, dout, cs, channel);
+const spawn = require('threads').spawn;
+ 
+const thread = spawn(function(input, done) {
+	// Everything we do here will be run in parallel in another execution context. 
+	// Remember that this function will be executed in the thread's context, 
+	// so you cannot reference any value of the surrounding code. 
+	
+	var adwandler = require('./adwandler');
+	var database = require('./database');
+//TODO: change with params
+	adwandler.init( 23,19,21,24,5);
 	database.init();
-	TEMP();
-};
 
-temp.prototype.getTempData = function(){
 	//First measurement most time very different
 	adwandler.getAnalogData();
-	while(true){
+
+	var anz = 3;
+
+  	while(true){
 		//Get avrage measurement
 		sum = 0;
-		for( var i = 0; i < temp.anz; i++){
+		for( var i = 0; i < anz; i++){
 			var tmp = adwandler.getAnalogData();
 			sum += tmp;
 			sleep(500);
 			
 		}
-		tmp_value = sum/temp.anz;
+		tmp_value = sum/anz;
 
 		voltage = -0.003222*tmp_value+3.3;
 		//Invert voltage gor temeprature
@@ -65,11 +67,46 @@ temp.prototype.getTempData = function(){
                                              minute: "numeric"});
 
 			database.addDataToDB("temp1",timestamp, temperature);
-			console.log("Message Server: " + temperature);
+			console.log("Message Device: " + temperature);
 		}
 		old_tmperature = temperature;
 	}
-}
+  done({ string : input.string, integer : parseInt(input.string) });
+});
+
+var temp_clk;
+var temp_din;
+var temp_dout;
+var temp_cs;
+var temp_channel;
+
+/*
+ * PUBLIC METHODS.
+ */
+
+temp.prototype.init = function(  clk, din, dout, cs, channel ){
+	temp_clk = clk;
+	temp_din = din;
+	temp_dout = dout;
+	temp_cs = cs;
+	temp_channel = channel;
+	
+	TEMP();
+};
+
+temp.prototype.getTempData = function(){
+	//Start thread that make measurements
+	thread
+	  .send({ string : '123' })
+	  // The handlers come here: (none of them is mandatory) 
+	  .on('error', function(error) {
+	    console.error('Worker errored:', error);
+	  })
+	  .on('exit', function() {
+	    console.log('Worker has been terminated.');
+	  });
+	
+};
 
 /*
  * PRIVATE METHODS.
