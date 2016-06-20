@@ -34,12 +34,14 @@ poti.prototype.init = function(  clk, din, dout, cs, channel ){
 };
 
 poti.prototype.getPotiData = function(){
+	//First measurement most time very different
+	adwandler.getAnalogData();
 	while(true){
 		//Get avrage measurement
 		sum = 0;
 		for( var i = 0; i < poti.anz; i++){
-			var tmp = adwandler.getAnalogData();
-			sum += tmp;
+			var adData = adwandler.getAnalogData();
+			sum += adData;
 			sleep(500);			
 		}
 		tmp_value = sum/poti.anz;

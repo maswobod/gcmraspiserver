@@ -36,6 +36,8 @@ temp.prototype.init = function(  clk, din, dout, cs, channel ){
 };
 
 temp.prototype.getTempData = function(){
+	//First measurement most time very different
+	adwandler.getAnalogData();
 	while(true){
 		//Get avrage measurement
 		sum = 0;
