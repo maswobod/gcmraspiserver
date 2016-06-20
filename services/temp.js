@@ -29,9 +29,9 @@ const thread = spawn(function(input, done) {
 	// Remember that this function will be executed in the thread's context, 
 	// so you cannot reference any value of the surrounding code. 
 	
-	var adwandler = require('./adwandler');
-	var database = require('./database');
-//TODO: change with params
+	var adwandler = require('adwandler');
+	var database = require('database');
+	//TODO: change with params
 	adwandler.init( 23,19,21,24,5);
 	database.init();
 
