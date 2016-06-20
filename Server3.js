@@ -47,40 +47,13 @@ database.init();
 var clients = [];
 
 //To send Messages
-var gcm = require('node-gcm');
-
-// Set up the sender with you API key
-var sender = new gcm.Sender('AIzaSyBAirrWt0-MbnVqR5l8YTIsc0foFYmHJPc');
-
-// Tokens to send 
-var regTokens = ['cAo_ls3Z31A:APA91bH_MFXtuU4KZcCDTLy6EIfGW90BGmS5_K1W_fF8G0mb5XQkPdYutVyXnV3AsGxGwWrLlDtcvs1wfRHGvG-EHZPgOtU8-fy1IF2RuNRjl_fyoxJzRkr-ok_tqCG40ImzYL2A9cXB'];
+var sendMessage = require('./services/messageSender');
+sendMessage.init('AIzaSyBAirrWt0-MbnVqR5l8YTIsc0foFYmHJPc');
+sendMessage.addRegToken('cAo_ls3Z31A:APA91bH_MFXtuU4KZcCDTLy6EIfGW90BGmS5_K1W_fF8G0mb5XQkPdYutVyXnV3AsGxGwWrLlDtcvs1wfRHGvG-EHZPgOtU8-fy1IF2RuNRjl_fyoxJzRkr-ok_tqCG40ImzYL2A9cXB');
 
 //To recive Messages
 var xmpp = require('node-xmpp-client');
  
-//Function to message the Device
-var messageDevice = function(notiTitle, notiBody, data){
-      //The Message itself
-  var message = new gcm.Message(); 
-  
-  if(data){
-    console.log("Data send: " +data);
-    message.addData("Measurement" ,data);
-    message.addData("Name", "Poti1");
-  }
-  
-  message.addNotification({
-    title: notiTitle,
-    body: notiBody,
-    icon: 'ic_launcher'
-  });
-
-  sender.send(message, { registrationTokens: regTokens }, function (err, response) {
-    if(err) console.error(err);
-    else    console.log(response);
-  });
-};
-
 //Set node-xmpp options.
 //Replace with your projectID in the jid and your API key in the password
 //The key settings for CCS are the last two to force SSL and Plain SASL auth.
@@ -130,9 +103,19 @@ cl.on('stanza',
         //e.g. awesomefunction(messageData);
         //but let's just log it.
 
-        //Send Awnser Message
-        regTokens = [messageData.from];
-        console.log(regTokens);
+        //check if regToken is in Reg tokens
+        var msgRegToken = messageData.from;
+        /*
+		 * if msgRegToken is not in reg tokes than add it to the 
+		 * tokens an send messega to device with modules used
+         */
+        if (!(contains(sendMessage.getRegTokens(),msgRegToken))) {
+        	console.log("Add Reg Token");
+        	sendMessage.addRegToken(msgRegToken);
+        	//TODO: Send used moduls by this thing
+        }else{
+        	console.log("Already in RegTokens");
+        };
 
         switch (messageData.data.message) {
           case "TurnOn":
@@ -186,3 +169,13 @@ cl.on('error',
    console.error(e.children);
    gpio.destroy()
  });
+
+var contains = function(a, obj){
+	var i = a.length;
+	    while (i--) {
+	       if (a[i] === obj) {
+	           return true;
+	       }
+	    }
+	    return false;
+};
