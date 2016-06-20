@@ -33,7 +33,7 @@ messageSender.prototype.deleteRegToken = function(regToken){
 
 messageSender.prototype.getRegTokens = function(){
     return regTokens;
-}
+};
 
 //Function to message the Device
 messageSender.prototype.messageDevice = function(notiTitle, notiBody, data){
