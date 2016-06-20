@@ -5,7 +5,7 @@ var EventEmitter = require('events').EventEmitter;
 
 var msSender;
 // Tokens to send 
-var regTokens
+var regTokens = [];
 
 /*
  * PUBLIC METHODS.
