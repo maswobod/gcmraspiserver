@@ -29,7 +29,8 @@ messageSender.prototype.addRegToken = function(regToken){
 };
 
 messageSender.prototype.deleteRegToken = function(regToken){
-    //soon
+    var a = regTokens.indexOf(regToken);
+    regTokens.splice(a, 1);
 };
 
 messageSender.prototype.getRegTokens = function(){
