@@ -24,15 +24,18 @@ util.inherits(temp, EventEmitter);
 
 const spawn = require('threads').spawn;
  
-const thread = spawn(function(input, done) {
+const thread = spawn(function( clk, din, dout, cs, channel , done) {
 	// Everything we do here will be run in parallel in another execution context. 
 	// Remember that this function will be executed in the thread's context, 
 	// so you cannot reference any value of the surrounding code. 
-	console.log(__dirname);
-	var adwandler = require('./services/adwandler');
-	var database = require('database');
+	var path = require("path");	
+	console.log("./ = %s", path.resolve("./"));
+	console.log("__dirname = %s", path.resolve(__dirname));
+
+	var adwandler = require('./adwandler');
+	var database = require('./database');
 	//TODO: change with params
-	adwandler.init( 23,19,21,24,5);
+	adwandler.init( clk, din, dout, cs, channel );
 	database.init();
 
 	//First measurement most time very different
@@ -97,7 +100,7 @@ temp.prototype.init = function(  clk, din, dout, cs, channel ){
 temp.prototype.getTempData = function(){
 	//Start thread that make measurements
 	thread
-	  .send({ string : '123' })
+	  .send(temp_clk,temp_din,temp_dout,temp_cs,temp_channel)
 	  // The handlers come here: (none of them is mandatory) 
 	  .on('error', function(error) {
 	    console.error('Worker errored:', error);
