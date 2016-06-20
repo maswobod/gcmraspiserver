@@ -38,6 +38,7 @@ temp.prototype.init = function(  clk, din, dout, cs, channel ){
 temp.prototype.getTempData = function(){
 	while(true){
 		//Get avrage measurement
+		sum = 0;
 		for( var i = 0; i < temp.anz; i++){
 			var tmp = adwandler.getAnalogData();
 			sum += tmp;

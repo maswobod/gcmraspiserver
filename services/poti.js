@@ -36,6 +36,7 @@ poti.prototype.init = function(  clk, din, dout, cs, channel ){
 poti.prototype.getPotiData = function(){
 	while(true){
 		//Get avrage measurement
+		sum = 0;
 		for( var i = 0; i < poti.anz; i++){
 			var tmp = adwandler.getAnalogData();
 			sum += tmp;
