@@ -28,7 +28,7 @@ const thread = spawn(function(input, done) {
 	// Everything we do here will be run in parallel in another execution context. 
 	// Remember that this function will be executed in the thread's context, 
 	// so you cannot reference any value of the surrounding code. 
-	console.log(window.location.pathname);
+	console.log(__dirname);
 	var adwandler = require('./services/adwandler');
 	var database = require('database');
 	//TODO: change with params
