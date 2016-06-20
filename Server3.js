@@ -49,7 +49,6 @@ var clients = [];
 //To send Messages
 var sendMessage = require('./services/messageSender');
 sendMessage.init('AIzaSyBAirrWt0-MbnVqR5l8YTIsc0foFYmHJPc');
-sendMessage.addRegToken('cAo_ls3Z31A:APA91bH_MFXtuU4KZcCDTLy6EIfGW90BGmS5_K1W_fF8G0mb5XQkPdYutVyXnV3AsGxGwWrLlDtcvs1wfRHGvG-EHZPgOtU8-fy1IF2RuNRjl_fyoxJzRkr-ok_tqCG40ImzYL2A9cXB');
 
 //To recive Messages
 var xmpp = require('node-xmpp-client');
