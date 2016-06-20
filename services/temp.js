@@ -28,12 +28,9 @@ const thread = spawn(function( clk, din, dout, cs, channel , done) {
 	// Everything we do here will be run in parallel in another execution context. 
 	// Remember that this function will be executed in the thread's context, 
 	// so you cannot reference any value of the surrounding code. 
-	var path = require("path");	
-	console.log("./ = %s", path.resolve("./"));
-	console.log("__dirname = %s", path.resolve(__dirname));
-
-	var adwandler = require('./adwandler');
-	var database = require('./database');
+	
+	var adwandler = require('./services/adwandler');
+	var database = require('./services/database');
 	//TODO: change with params
 	adwandler.init( clk, din, dout, cs, channel );
 	database.init();
