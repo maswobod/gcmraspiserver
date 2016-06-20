@@ -26,6 +26,7 @@ messageSender.prototype.init = function( sender ){
 
 messageSender.prototype.addRegToken = function(regToken){
     regTokens.push(regToken);
+};
 
 messageSender.prototype.deleteRegToken = function(regToken){
     //soon
@@ -44,7 +45,7 @@ messageSender.prototype.messageDevice = function(notiTitle, notiBody, data){
     console.log("Data send: " +data);
     message.addData("Measurement" ,data);
     message.addData("Name", "Poti1");
-  }
+  };
   
   message.addNotification({
     title: notiTitle,
