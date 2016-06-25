@@ -44,7 +44,7 @@ var poti = require('./services/poti');
 var temp = require('./services/temp');
 temp.init(23,19,21,24,5);
 temp.getTempData();
-modules.push({"TEMP" : "Temperatur"});
+modules.modules.push({"TEMP" : "Temperatur"});
 
 //Just a test
 console.log("Main file running");
