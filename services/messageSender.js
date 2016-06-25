@@ -54,7 +54,7 @@ messageSender.prototype.messageDevice = function(thingName, notiTitle, notiBody,
     icon: 'ic_launcher'
   });
 
-  sender.send(message, { registrationTokens: regTokens }, function (err, response) {
+  msSender.send(message, { registrationTokens: regTokens }, function (err, response) {
     if(err) console.error(err);
     else    console.log(response);
   });
