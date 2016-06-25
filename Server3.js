@@ -6,7 +6,6 @@
 */
 //All Modules which must be displayd in app must be in this array
 var modules = {
-	name: "Modules",
 	modules: []
 	};
 
