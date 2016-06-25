@@ -21,7 +21,8 @@ util.inherits(temp, EventEmitter);
 /* 
  * Constants
  */
-
+//Vielleicht durvch polling
+// Oder durch timer
 const spawn = require('threads').spawn;
  
 const thread = spawn(function( clk, din, dout, cs, channel , done) {

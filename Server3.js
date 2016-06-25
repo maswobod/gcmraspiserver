@@ -4,15 +4,22 @@
 * Version: 030516
 * TODO: Sensoren als Service
 */
+//All Modules which must be displayd in app must be in this array
+var modules = {
+	name: "Modules",
+	modules: []
+	};
 
 //LED Service Object
 var LED = require('./services/led');
 //Init LED Port 7
 LED.init(7);
+modules.modules.push({"LED" : "Licht 1"});
 
 //RGB LED Service
 var RGBLED = require('./services/rgbled');
 RGBLED.init(15,13,11);
+modules.modules.push({"RGBLED" : "Licht 20"});
 
 //Buttons Service Object
 var btn1 = require('./services/button');
@@ -37,6 +44,9 @@ var poti = require('./services/poti');
 var temp = require('./services/temp');
 temp.init(23,19,21,24,5);
 temp.getTempData();
+modules.push({"TEMP" : "Temperatur"});
+
+//Just a test
 console.log("Main file running");
 
 //Database Service Object
@@ -47,8 +57,8 @@ database.init();
 var clients = [];
 
 //To send Messages
-var sendMessage = require('./services/messageSender');
-sendMessage.init('AIzaSyBAirrWt0-MbnVqR5l8YTIsc0foFYmHJPc');
+var messageSend = require('./services/messageSender');
+messageSend.init('AIzaSyBAirrWt0-MbnVqR5l8YTIsc0foFYmHJPc');
 
 //To recive Messages
 var xmpp = require('node-xmpp-client');
@@ -108,10 +118,11 @@ cl.on('stanza',
 		 * if msgRegToken is not in reg tokes than add it to the 
 		 * tokens an send messega to device with modules used
          */
-        if (!(contains(sendMessage.getRegTokens(),msgRegToken))) {
+        if (!(contains(messageSend.getRegTokens(),msgRegToken))) {
         	console.log("Add Reg Token");
-        	sendMessage.addRegToken(msgRegToken);
+        	messageSend.addRegToken(msgRegToken);
         	//TODO: Send used moduls by this thing
+        	messageSend.messageDevice("Thing Name here", "Noti title here", "Hallo form new Thing", modules, "Modules" );
         }else{
         	console.log("Already in RegTokens");
         };
@@ -142,8 +153,12 @@ cl.on('stanza',
           break;
 
           case "pottyData":
-            database.getDataFromDB("poti1");
+            var data = database.getDataFromDB("poti1");
+            messageSend.messageDevice("Thing 1", "New Data", "New poti data available", data, "POTI");
             break;
+
+         case "DELETE":
+         	messageSend.deleteRegToken(msgRegToken);
 
          default:
             console.log("Unknown Message")

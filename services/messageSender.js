@@ -38,14 +38,14 @@ messageSender.prototype.getRegTokens = function(){
 };
 
 //Function to message the Device
-messageSender.prototype.messageDevice = function(notiTitle, notiBody, data){
+messageSender.prototype.messageDevice = function(thingName, notiTitle, notiBody, data, dataType){
       //The Message itself
   var message = new gcm.Message(); 
   
   if(data){
     console.log("Data send: " +data);
-    message.addData("Measurement" ,data);
-    message.addData("Name", "Poti1");
+    message.addData(dataType ,data);
+    message.addData("Name", thingName);
   };
   
   message.addNotification({
