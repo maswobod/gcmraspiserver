@@ -22,13 +22,14 @@ RGBLED.init(15,13,11);
 modules.modules.push({"RGBLED" : "Licht 20"});
 
 //Buttons Service Object
+/*
 var btn1 = require('./services/button');
 btn1.init(29);
 var btn2  = require('./services/button');
 btn2.init(31);
-
+*/
 //Poti Service Object
-var poti = require('./services/poti');
+//var poti = require('./services/poti');
 /*
  *Init like this:
  *var poti_channel = 7;  // Analog/Digital-Channel
@@ -41,11 +42,11 @@ var poti = require('./services/poti');
 //poti.getPotiData();
 
 //Temp Service Object
-var temp = require('./services/temp');
+/*var temp = require('./services/temp');
 temp.init(23,19,21,24,5);
 temp.getTempData();
 modules.modules.push({"TEMP" : "Temperatur"});
-
+*/
 //Just a test
 console.log("Main file running");
 
