@@ -158,6 +158,7 @@ cl.on('stanza',
             break;
 
          case "DELETE":
+         	console.log("Delete: " + msgRegToken);
          	messageSend.deleteRegToken(msgRegToken);
 
          default:
