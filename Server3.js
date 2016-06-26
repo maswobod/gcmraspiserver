@@ -13,12 +13,12 @@ var modules = {
 var LED = require('./services/led');
 //Init LED Port 7
 LED.init(7);
-modules.modules.push({"LED" : "Licht 1"});
+modules.modules.push({'LED' : 'Licht 1'});
 
 //RGB LED Service
 var RGBLED = require('./services/rgbled');
 RGBLED.init(15,13,11);
-modules.modules.push({"RGBLED" : "Licht 20"});
+modules.modules.push({'RGBLED' : 'Licht 20'});
 
 //Buttons Service Object
 /*
