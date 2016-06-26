@@ -29,16 +29,17 @@ btn2.init(31);
 */
 //Poti Service Object
 //var poti = require('./services/poti');
-/*
+
  *Init like this:
  *var poti_channel = 7;  // Analog/Digital-Channel
  *var CLK_Pin = 23; // Clock bcm 11
  *var DIN_Pin = 19; // Digital in bcm 10
  *var DOUT_Pin = 21;  // Digital out bcm 9
  *var CS_Pin = 24; //Chip-Select bcm 8
- */
-//poti.init(23,19,21,24,7);
-//poti.getPotiData();
+ 
+poti.init(23,19,21,24,7);
+//poti.getPotiData(); still not running well
+modules.modules.push({'POTI' : 'Poti 1'});
 
 //Temp Service Object
 /*var temp = require('./services/temp');
@@ -95,7 +96,8 @@ cl.on('stanza',
       //Message format as per here: https://developer.android.com/google/gcm/ccs.html#upstream
       var messageData = JSON.parse(stanza.getChildText("gcm"));
 
-      console.log(messageData);
+      console.log("From: " + messageData.from);
+      console.log("Message: " + messageData.data.message);
 
       if (messageData && messageData.message_type != "ack" && messageData.message_type != "nack") {
 
