@@ -2,8 +2,8 @@
 //Poti Module
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;
-var adwandler = require('./services/adwandler');
-var database = require('./services/database');
+var adwandler = require('./adwandler');
+var database = require('./database');
 //To send Messages
 var messageSend = require('./messageSender');
 
