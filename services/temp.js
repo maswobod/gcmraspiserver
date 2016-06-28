@@ -59,7 +59,7 @@ temp.prototype.getTempData = function(){
 	for( var i = 0; i < temp.anz; i++){
 		var tmp = adwandler.getAnalogData();
 		sum += tmp;
-		speel(500);	
+		sleep(500);	
 	}
 	tmp_value = sum/temp.anz;
 
