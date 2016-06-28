@@ -61,11 +61,10 @@ poti.prototype.getPotiData = function(){
 		database.addDataToDB("poti1",timestamp, voltage);
 		console.log("Message Server: " + voltage);
 		var newPotiData = {Time: timestamp, Value: voltage};
-		var jString = JSON.stringify(newPotiData);
 		var send = {
           	potinew: []
           };
-        send.potinew.push(jString);
+        send.potinew.push(newPotiData);
          messageSend.messageDevice("Thing Name here", "Noti title here", "New Poti data", send, "POTINEW");
 
 	}

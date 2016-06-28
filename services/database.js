@@ -61,7 +61,6 @@ database.prototype.getDataFromDB = function(collectionName){
         if (err) {
           console.log(err);
         } else if (result.length) {
-          var jString = JSON.stringify(result);
           var send = {
           	potiall: []
           };
