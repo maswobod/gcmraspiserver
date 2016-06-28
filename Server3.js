@@ -37,8 +37,11 @@ var poti = require('./services/poti');
  *var DOUT_Pin = 21;  // Digital out bcm 9
  *var CS_Pin = 24; //Chip-Select bcm 8
  */
+var interval = 30000; // Every 30 sec
 poti.init(23,19,21,24,7);
-//poti.getPotiData(); still not running well
+setInterval(function() {
+	poti.getPotiData(); 
+}, interval);
 modules.modules.push({'POTI' : 'Poti 1'});
 
 //Temp Service Object
