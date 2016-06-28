@@ -49,6 +49,7 @@ messageSender.prototype.messageDevice = function(thingName, notiTitle, notiBody,
   };
   
   if(notiTitle){ 
+    onsole.log("Send Notification");
       message.addNotification({
         title: notiTitle,
         body: notiBody,

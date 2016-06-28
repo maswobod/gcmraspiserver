@@ -161,8 +161,7 @@ cl.on('stanza',
           break;
 
           case "pottyData":
-            var data = database.getDataFromDB("poti1");
-            messageSend.messageDevice("Thing 1", null, null, data, "POTIALL");
+            messageSend.messageDevice("Thing 1", null, null, database.getDataFromDB("poti1");, "POTIALL");
             break;
 
          case "DELETE":
