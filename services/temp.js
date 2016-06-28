@@ -93,7 +93,7 @@ temp.prototype.getTempData = function(){
  */ 
 
 function TEMP(){
-	console.log("Poti defined");
+	console.log("Temp defined");
 };
 
 /*
