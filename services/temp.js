@@ -75,6 +75,7 @@ temp.prototype.getTempData = function(){
 	lower_bound = old_tmperature-0.5;
 	upper_bound = old_tmperature+0.5;
 
+	console.log(temperature);
 	if (temperature < lower_bound || temperature > upper_bound) {
 		var timestamp = new Date().toLocaleTimeString('en-GB', { hour: "numeric", 
                                             minute: "numeric"});
