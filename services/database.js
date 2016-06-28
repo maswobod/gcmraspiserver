@@ -24,14 +24,14 @@ database.prototype.init = function(){
 };
 
 //Function to insert new Poti Data
-database.prototype.addDataToDB = function(collection, measTime, newValue){
+database.prototype.addDataToDB = function(collectionName, measTime, newValue){
   MongoClient.connect(url, function(err, db){
     if(err){
       console.log('Unable to connect to the mongoDB server. Error:', err);
     }else{
       console.log('Connection established to', url);
 
-      var collection = db.collection(String(collection));
+      var collection = db.collection(String(collectionName));
 
       var newPotiData = {Time: measTime, Value: newValue};
       collection.insert(newPotiData, function(err, result){
