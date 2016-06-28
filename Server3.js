@@ -37,20 +37,24 @@ var poti = require('./services/poti');
  *var DOUT_Pin = 21;  // Digital out bcm 9
  *var CS_Pin = 24; //Chip-Select bcm 8
  */
+ /*
 var interval = 30000; // Every 30 sec
 poti.init(23,19,21,24,7);
 setInterval(function() {
 	console.log("Check for Poti Data");
 	poti.getPotiData(); 
 }, interval);
-modules.modules.push({'POTI' : 'Poti 1'});
+modules.modules.push({'POTI' : 'Poti 1'});*/
 
 //Temp Service Object
-/*var temp = require('./services/temp');
+var temp = require('./services/temp');
 temp.init(23,19,21,24,5);
-temp.getTempData();
-modules.modules.push({"TEMP" : "Temperatur"});
-*/
+setInterval(function() {
+	console.log("Check for Temp Data");
+	temp.getTempData();
+}, 32000);
+//modules.modules.push({"TEMP" : "Temperatur"});
+
 
 //Database Service Object
 var database = require('./services/database');

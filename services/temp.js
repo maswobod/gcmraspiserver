@@ -24,6 +24,7 @@ util.inherits(temp, EventEmitter);
 /* 
  * Constants
  */
+ temp.anz = 3;
 
 var temp_clk;
 var temp_din;
@@ -53,17 +54,15 @@ temp.prototype.getTempData = function(){
 	//First measurement most time very different
 	adwandler.getAnalogData();
 
-	var anz = 3;
-
 	//Get avrage measurement
 	sum = 0;
-	for( var i = 0; i < anz; i++){
+	for( var i = 0; i < temp.anz; i++){
 		setTimeout(function(){
 			var tmp = adwandler.getAnalogData();
 			sum += tmp;
 		}, 500);	
 	}
-	tmp_value = sum/anz;
+	tmp_value = sum/temp.anz;
 
 	voltage = -0.003222*tmp_value+3.3;
 	//Invert voltage gor temeprature
