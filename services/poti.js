@@ -3,6 +3,8 @@ var util = require('util');
 var EventEmitter = require('events').EventEmitter;
 var adwandler = require('./adwandler');
 var database = require('./database');
+//To send Messages
+var messageSend = require('./services/messageSender');
 
 var old_voltage = 0;
 var voltage = 0;
@@ -30,6 +32,7 @@ poti.anz = 3;
 poti.prototype.init = function(  clk, din, dout, cs, channel ){
 	adwandler.init( clk, din, dout, cs, channel);
 	database.init();
+	messageSend.init('AIzaSyBAirrWt0-MbnVqR5l8YTIsc0foFYmHJPc');
 	POTI();
 };
 
@@ -58,6 +61,7 @@ poti.prototype.getPotiData = function(){
                                          minute: "numeric"});
 		database.addDataToDB("poti1",timestamp, voltage);
 		console.log("Message Server: " + voltage);
+		messageSend.messageDevice("Thing Name here", "Noti title here", "New Poti data", voltage, "POTI" );
 	}
 	old_voltage = voltage;
 	

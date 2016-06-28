@@ -4,6 +4,8 @@ var util = require('util');
 var EventEmitter = require('events').EventEmitter;
 var adwandler = require('./services/adwandler');
 var database = require('./services/database');
+//To send Messages
+var messageSend = require('./services/messageSender');
 
 var old_tmperature = 0;
 var temperature = 0;
@@ -42,6 +44,7 @@ temp.prototype.init = function(  clk, din, dout, cs, channel ){
 
 	adwandler.init( clk, din, dout, cs, channel );
 	database.init();
+	messageSend.init('AIzaSyBAirrWt0-MbnVqR5l8YTIsc0foFYmHJPc');
 	
 	TEMP();
 };
@@ -79,6 +82,7 @@ temp.prototype.getTempData = function(){
 
 		database.addDataToDB("temp1",timestamp, temperature);
 		console.log("Message Device: " + temperature);
+		messageSend.messageDevice("Thing Name here", "Noti title here", "New Poti data", temperature, "TEMP" );
 	}
 	old_tmperature = temperature;
 	

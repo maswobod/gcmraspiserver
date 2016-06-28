@@ -127,7 +127,7 @@ cl.on('stanza',
         if (!(contains(messageSend.getRegTokens(),msgRegToken))) {
         	console.log("Add Reg Token & send all modules");
         	messageSend.addRegToken(msgRegToken);
-        	//TODO: Send used moduls by this thing
+        	//TODO: Send all data from modules 
         	messageSend.messageDevice("Thing Name here", "Noti title here", "Hallo form new Thing", modules, "Modules" );
         }else{
         	console.log("Already in RegTokens");
