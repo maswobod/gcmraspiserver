@@ -57,10 +57,9 @@ temp.prototype.getTempData = function(){
 	//Get avrage measurement
 	sum = 0;
 	for( var i = 0; i < temp.anz; i++){
-		setTimeout(function(){
-			var tmp = adwandler.getAnalogData();
-			sum += tmp;
-		}, 500);	
+		var tmp = adwandler.getAnalogData();
+		sum += tmp;
+		speel(500);	
 	}
 	tmp_value = sum/temp.anz;
 
@@ -96,7 +95,7 @@ function TEMP(){
 	console.log("Temp defined");
 };
 
-/*
+
 function sleep(milliseconds) {
   var start = new Date().getTime();
   for (var i = 0; i < 1e7; i++) {
@@ -104,6 +103,6 @@ function sleep(milliseconds) {
       break;
     }
   }
-}*/
+};
 
 module.exports = new temp;

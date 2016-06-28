@@ -43,10 +43,9 @@ poti.prototype.getPotiData = function(){
 	//Get avrage measurement
 	sum = 0;
 	for( var i = 0; i < poti.anz; i++){
-		setTimeout(function(){
-			var adData = adwandler.getAnalogData();
-			sum += adData;
-		}, 500);		
+		var adData = adwandler.getAnalogData();
+		sum += adData;
+		sleep(500);		
 	}
 	tmp_value = sum/poti.anz;
 
@@ -74,7 +73,7 @@ poti.prototype.getPotiData = function(){
 function POTI(){
 	console.log("Poti defined");
 };
-/*
+
 function sleep(milliseconds) {
   var start = new Date().getTime();
   for (var i = 0; i < 1e7; i++) {
@@ -82,6 +81,6 @@ function sleep(milliseconds) {
       break;
     }
   }
-}*/
+}
 
 module.exports = new poti;
