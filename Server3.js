@@ -40,6 +40,7 @@ var poti = require('./services/poti');
 var interval = 30000; // Every 30 sec
 poti.init(23,19,21,24,7);
 setInterval(function() {
+	console.log("Check for Poti Data");
 	poti.getPotiData(); 
 }, interval);
 modules.modules.push({'POTI' : 'Poti 1'});
@@ -124,7 +125,7 @@ cl.on('stanza',
 		 * tokens an send messega to device with modules used
          */
         if (!(contains(messageSend.getRegTokens(),msgRegToken))) {
-        	console.log("Add Reg Token");
+        	console.log("Add Reg Token & send all modules");
         	messageSend.addRegToken(msgRegToken);
         	//TODO: Send used moduls by this thing
         	messageSend.messageDevice("Thing Name here", "Noti title here", "Hallo form new Thing", modules, "Modules" );
