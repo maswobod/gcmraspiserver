@@ -62,7 +62,11 @@ database.prototype.getDataFromDB = function(collectionName){
           console.log(err);
         } else if (result.length) {
           var jString = JSON.stringify(result);
-          messageSend.messageDevice("Thing 1", null, null, jString, "POTIALL");
+          var send = {
+          	potiall: []
+          };
+          send.potiall.push(result);
+          messageSend.messageDevice("Thing 1", null, null, send, "POTIALL");
         } else {
           console.log('No document(s) found with defined "find" criteria!');
         }
