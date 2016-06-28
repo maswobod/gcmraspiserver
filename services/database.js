@@ -6,7 +6,8 @@ var EventEmitter = require('events').EventEmitter;
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 var url = 'mongodb://localhost:27017/test_1';
-
+//To send Messages
+var messageSend = require('./messageSender');
 
 function database()
 {
@@ -19,7 +20,7 @@ util.inherits(database, EventEmitter);
  */
 
 database.prototype.init = function(){
-	//Maby something in future...
+	messageSend.init('AIzaSyBAirrWt0-MbnVqR5l8YTIsc0foFYmHJPc');
 	DB();
 };
 
@@ -61,7 +62,7 @@ database.prototype.getDataFromDB = function(collectionName){
           console.log(err);
         } else if (result.length) {
           var jString = JSON.stringify(result);
-          messageDevice("New Pottydata", "New Pottydata accessable", jString);
+          messageSend.messageDevice("Thing 1", "New Data", "New poti data available", jString, "POTI");
         } else {
           console.log('No document(s) found with defined "find" criteria!');
         }
