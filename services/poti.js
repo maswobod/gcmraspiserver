@@ -60,7 +60,7 @@ poti.prototype.getPotiData = function(){
                                          minute: "numeric"});
 		database.addDataToDB("poti1",timestamp, voltage);
 		console.log("Message Server: " + voltage);
-		messageSend.messageDevice("Thing Name here", "Noti title here", "New Poti data", voltage, "POTIDATA" );
+		messageSend.messageDevice("Thing Name here", "Noti title here", "New Poti data", voltage, "POTINEW" );
 	}
 	old_voltage = voltage;
 	

@@ -48,11 +48,13 @@ messageSender.prototype.messageDevice = function(thingName, notiTitle, notiBody,
     message.addData("Name", thingName);
   };
   
-  message.addNotification({
-    title: notiTitle,
-    body: notiBody,
-    icon: 'ic_launcher'
-  });
+  if(notiTitle){ 
+      message.addNotification({
+        title: notiTitle,
+        body: notiBody,
+        icon: 'ic_launcher'
+      });
+  };
 
   msSender.send(message, { registrationTokens: regTokens }, function (err, response) {
     if(err) console.error(err);
