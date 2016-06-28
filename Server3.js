@@ -13,12 +13,12 @@ var modules = {
 var LED = require('./services/led');
 //Init LED Port 7
 LED.init(7);
-modules.modules.push({'LED' : 'Licht 1'});
+modules.modules.push({'LED' : 'Licht1'});
 
 //RGB LED Service
 var RGBLED = require('./services/rgbled');
 RGBLED.init(15,13,11);
-modules.modules.push({'RGBLED' : 'Licht 20'});
+modules.modules.push({'RGBLED' : 'Licht20'});
 
 //Buttons Service Object
 /*
@@ -37,22 +37,22 @@ var poti = require('./services/poti');
  *var DOUT_Pin = 21;  // Digital out bcm 9
  *var CS_Pin = 24; //Chip-Select bcm 8
  */
- /*
 var interval = 30000; // Every 30 sec
 poti.init(23,19,21,24,7);
 setInterval(function() {
 	console.log("Check for Poti Data");
 	poti.getPotiData(); 
 }, interval);
-modules.modules.push({'POTI' : 'Poti 1'});*/
+modules.modules.push({'POTI' : 'Poti1'});
 
 //Temp Service Object
+/*
 var temp = require('./services/temp');
 temp.init(23,19,21,24,5);
 setInterval(function() {
 	console.log("Check for Temp Data");
 	temp.getTempData();
-}, 1000);
+}, 3000);*/
 //modules.modules.push({"TEMP" : "Temperatur"});
 
 
