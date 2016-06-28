@@ -51,8 +51,6 @@ temp.init(23,19,21,24,5);
 temp.getTempData();
 modules.modules.push({"TEMP" : "Temperatur"});
 */
-//Just a test
-console.log("Main file running");
 
 //Database Service Object
 var database = require('./services/database');
