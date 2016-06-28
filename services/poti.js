@@ -4,7 +4,7 @@ var EventEmitter = require('events').EventEmitter;
 var adwandler = require('./adwandler');
 var database = require('./database');
 //To send Messages
-var messageSend = require('./services/messageSender');
+var messageSend = require('./messageSender');
 
 var old_voltage = 0;
 var voltage = 0;

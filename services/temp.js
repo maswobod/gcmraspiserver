@@ -5,7 +5,7 @@ var EventEmitter = require('events').EventEmitter;
 var adwandler = require('./services/adwandler');
 var database = require('./services/database');
 //To send Messages
-var messageSend = require('./services/messageSender');
+var messageSend = require('./messageSender');
 
 var old_tmperature = 0;
 var temperature = 0;
