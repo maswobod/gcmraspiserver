@@ -62,7 +62,7 @@ database.prototype.getDataFromDB = function(collectionName){
           console.log(err);
         } else if (result.length) {
           var jString = JSON.stringify(result);
-          return jString;
+          messageSend.messageDevice("Thing 1", null, null, jString, "POTIALL");
         } else {
           console.log('No document(s) found with defined "find" criteria!');
         }

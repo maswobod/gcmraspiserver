@@ -161,7 +161,7 @@ cl.on('stanza',
           break;
 
           case "pottyData":
-            messageSend.messageDevice("Thing 1", null, null, database.getDataFromDB("poti1"), "POTIALL");
+            database.getDataFromDB("poti1");
             break;
 
          case "DELETE":
