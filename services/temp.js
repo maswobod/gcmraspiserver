@@ -76,8 +76,14 @@ temp.prototype.getTempData = function(){
 
 	console.log(temperature);
 	if (temperature < lower_bound || temperature > upper_bound) {
-		var timestamp = new Date().toLocaleTimeString('en-GB', { hour: "numeric", 
-                                            minute: "numeric"});
+		var currentdate = new Date();
+		var timestamp = "Date: " + currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear() + " Time: "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+
 
 		database.addDataToDB("temp1",timestamp, temperature);
 		console.log("Message Device: " + temperature);

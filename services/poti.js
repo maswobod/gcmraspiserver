@@ -56,8 +56,15 @@ poti.prototype.getPotiData = function(){
 
 	if (voltage < lower_bound || voltage > upper_bound) {
 		//Add Data to Database
-		var timestamp = new Date().toLocaleTimeString('en-GB', { hour: "numeric", 
-                                         minute: "numeric"});
+		var currentdate = new Date();
+		var timestamp = "Date: " + currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear() + " Time: "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+
+
 		database.addDataToDB("poti1",timestamp, voltage);
 		console.log("Message Server: " + voltage);
 		var newPotiData = {Time: timestamp, Value: voltage};
