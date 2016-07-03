@@ -20,11 +20,41 @@ var RGBLED = require('./services/rgbled');
 RGBLED.init(15,13,11);
 modules.modules.push({'RGBLED' : 'Licht20'});
 
-//Button Service Object
+//Buttons Service Object
+
+    rpio.open(29, rpio.INPUT, rpio.PULL_DOWN);
+function pollcb(cbpin)
+{
+    /*
+     * It cannot be guaranteed that the current value of the pin is the
+     * same that triggered the event, so the best we can do is notify the
+     * user that an event happened and print what the value is currently
+     * set to.
+     *
+     * Unless you are pressing the button faster than 1ms (the default
+     * setInterval() loop which polls for events) this shouldn't be a
+     * problem.
+     */
+    var state = rpio.read(cbpin) ? 'pressed' : 'released';
+    console.log('Button event on P%d (button currently %s)', cbpin, state);
+
+    /*
+     * By default this program will run forever.  If you want to cancel the
+     * poll after the first event and end the program, uncomment this line.
+     */
+    // rpio.poll(cbpin, null);
+}
+
+    rpio.poll(29, pollcb, rpio.POLL_HIGH);
+
+/*
+var btn1 = require('./services/button');
+btn1.init(29);
+
 var btn2  = require('./services/button');
 btn2.init(31);
 setInterval(function() {
-	btn2.checkIfPressed();
+	btn1.checkIfPressed();
 	//btn2.checkIfPressed();
 }, 2000);
 
