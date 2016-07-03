@@ -76,6 +76,8 @@ temp.prototype.getTempData = function(){
 
 	console.log(temperature);
 	if (temperature < lower_bound || temperature > upper_bound) {
+		old_tmperature = temperature;
+		
 		var currentdate = new Date();
 		var timestamp = "Date: " + currentdate.getDate() + "/"
                 + (currentdate.getMonth()+1)  + "/" 
@@ -90,7 +92,7 @@ temp.prototype.getTempData = function(){
 		var newTempData = {Time: timestamp, Value: temperature};
 		var jString = JSON.stringify(newTempData);
 		messageSend.messageDevice("Thing Name here", "Noti title here", "New Temp data", jString, "TEMPDATA" );
-		old_tmperature = temperature;
+		
 	}
 	
 };

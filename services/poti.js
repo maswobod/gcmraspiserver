@@ -55,6 +55,7 @@ poti.prototype.getPotiData = function(){
 	upper_bound = old_voltage+0.3;
 
 	if (voltage < lower_bound || voltage > upper_bound) {
+		old_voltage = voltage;
 		//Add Data to Database
 		var currentdate = new Date();
 		var timestamp = "Date: " + currentdate.getDate() + "/"
@@ -74,7 +75,7 @@ poti.prototype.getPotiData = function(){
         send.potinew.push(newPotiData);
         messageSend.messageDevice("Thing Name here", "Noti title here", "New Poti data", send, "POTINEW");
 
-		old_voltage = voltage;
+		
 	}
 	
 };
