@@ -1,6 +1,6 @@
 // Button Module
 var port; 
-var gpio = require("pi-gpio");
+var rpio = require('rpio');
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;
 
@@ -19,7 +19,7 @@ util.inherits(button, EventEmitter);
 
 button.prototype.init = function( btn_port ){
 	port = btn_port;
-    gpio.open(port, "input");
+    rpio.open(port, rpio.INPUT);
     messageSend.init('AIzaSyBAirrWt0-MbnVqR5l8YTIsc0foFYmHJPc');
 
 	BTN();
@@ -30,11 +30,7 @@ button.prototype.init = function( btn_port ){
  */ 
 
 button.prototype.checkIfPressed = function(){
-    gpio.read(port, function(err, value) {
-    if(err) throw err;
-    console.log(value); // The current state of the pin
-});
-
+    console.log('Pin 11 is currently set ' + (rpio.read(port) ? 'high' : 'low'));
 };
 
 function BTN(){
