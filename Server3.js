@@ -20,15 +20,11 @@ var RGBLED = require('./services/rgbled');
 RGBLED.init(15,13,11);
 modules.modules.push({'RGBLED' : 'Licht20'});
 
-//Buttons Service Object
-
-var btn1 = require('./services/button');
-btn1.init(29);
-
+//Button Service Object
 var btn2  = require('./services/button');
 btn2.init(31);
 setInterval(function() {
-	btn1.checkIfPressed();
+	btn2.checkIfPressed();
 	//btn2.checkIfPressed();
 }, 2000);
 
