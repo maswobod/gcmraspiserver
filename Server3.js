@@ -21,8 +21,8 @@ RGBLED.init(15,13,11);
 modules.modules.push({'RGBLED' : 'Licht20'});
 
 //Buttons Service Object
-
-    rpio.open(29, rpio.INPUT, rpio.PULL_DOWN);
+var rpio = require('rpio');
+rpio.open(29, rpio.INPUT, rpio.PULL_DOWN);
 function pollcb(cbpin)
 {
     /*
@@ -44,8 +44,7 @@ function pollcb(cbpin)
      */
     // rpio.poll(cbpin, null);
 }
-
-    rpio.poll(29, pollcb, rpio.POLL_HIGH);
+rpio.poll(29, pollcb, rpio.POLL_HIGH);
 
 /*
 var btn1 = require('./services/button');
