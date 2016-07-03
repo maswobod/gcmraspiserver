@@ -90,8 +90,8 @@ temp.prototype.getTempData = function(){
 		var newTempData = {Time: timestamp, Value: temperature};
 		var jString = JSON.stringify(newTempData);
 		messageSend.messageDevice("Thing Name here", "Noti title here", "New Temp data", jString, "TEMPDATA" );
+		old_tmperature = temperature;
 	}
-	old_tmperature = temperature;
 	
 };
 

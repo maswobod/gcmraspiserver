@@ -61,13 +61,14 @@ database.prototype.getDataFromDB = function(collectionName){
         if (err) {
           console.log(err);
         } else if (result.length) {
-          var send = {
-          	potiall: []
-          };
-          send.potiall.push(result);
+        	var datataype = collectionName + "ALL";
+          	var send = {
+          		datataype: []
+          	};
+          	send.datataype.push(result);
 
-          var datataype = collectionName + "ALL";
-          messageSend.messageDevice("Thing 1", null, null, send, datataype);
+          
+          	messageSend.messageDevice("Thing 1", null, null, send, datataype);
         } else {
           console.log('No document(s) found with defined "find" criteria!');
         }

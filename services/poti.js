@@ -72,10 +72,10 @@ poti.prototype.getPotiData = function(){
           	potinew: []
           };
         send.potinew.push(newPotiData);
-         messageSend.messageDevice("Thing Name here", "Noti title here", "New Poti data", send, "POTINEW");
+        messageSend.messageDevice("Thing Name here", "Noti title here", "New Poti data", send, "POTINEW");
 
+		old_voltage = voltage;
 	}
-	old_voltage = voltage;
 	
 };
 
