@@ -71,13 +71,11 @@ temp.prototype.getTempData = function(){
 	 * Every 10 Milivolt = 1 Celcius
 	 */
 	temperature = invVol*100;
-	lower_bound = old_tmperature-0.5;
-	upper_bound = old_tmperature+0.5;
+	lower_bound = old_tmperature-0.2;
+	upper_bound = old_tmperature+0.2;
 
 	console.log(temperature);
 	if (temperature < lower_bound || temperature > upper_bound) {
-		old_tmperature = temperature;
-		
 		var currentdate = new Date();
 		var timestamp = "Date: " + currentdate.getDate() + "/"
                 + (currentdate.getMonth()+1)  + "/" 
@@ -94,7 +92,7 @@ temp.prototype.getTempData = function(){
 		messageSend.messageDevice("Thing Name here", "Noti title here", "New Temp data", jString, "TEMPDATA" );
 		
 	}
-	
+	old_tmperature = temperature;
 };
 
 /*
