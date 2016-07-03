@@ -9,6 +9,11 @@ var modules = {
 	modules: []
 	};
 
+
+//To send Messages
+var messageSend = require('./services/messageSender');
+messageSend.init('AIzaSyBAirrWt0-MbnVqR5l8YTIsc0foFYmHJPc');
+
 //LED Service Object
 var LED = require('./services/led');
 //Init LED Port 7
@@ -23,20 +28,17 @@ modules.modules.push({'RGBLED' : 'Licht20'});
 //Buttons Service Object
 //Port 29 gpio 5 & Port 31 gpio 6
 var Gpio = require('onoff').Gpio,
-  button = new Gpio(5, 'in',  'falling'),
-  button2 = new Gpio(6, 'in',  'falling');
+  button = new Gpio(5, 'in', 'rising'),
+  button2 = new Gpio(6, 'in', 'rising');
 
 button.watch(function(err, value) {
   console.log('btn1 pushed'); 
+  messageSend.messageDevice("Prototype", "Button Pushed", "Button 1 was pushed", null, null);
 });
 
 button2.watch(function(err, value) {
   console.log('btn2 pushed'); 
-});
-
-process.on('SIGINT', function () {
-  button.unexport();
-  button2.unexport();
+  messageSend.messageDevice("Prototype", "Button Pushed", "Button 2 was pushed", null, null);
 });
 
 //Poti Service Object
@@ -74,10 +76,6 @@ database.init();
 
 // Keep track of the chat clients
 var clients = [];
-
-//To send Messages
-var messageSend = require('./services/messageSender');
-messageSend.init('AIzaSyBAirrWt0-MbnVqR5l8YTIsc0foFYmHJPc');
 
 //To recive Messages
 var xmpp = require('node-xmpp-client');
@@ -206,7 +204,12 @@ cl.on('error',
    console.error(e);
    console.error(e.children);
    gpio.destroy()
- });
+});
+
+process.on('SIGINT', function () {
+  button.unexport();
+  button2.unexport();
+});
 
 var contains = function(a, obj){
 	var i = a.length;
