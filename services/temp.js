@@ -91,7 +91,7 @@ temp.prototype.getTempData = function(){
 		var send = {
           	tempnew: []
           };
-        send.potinew.push(newTempData);
+        send.tempnew.push(newTempData);
 
 		messageSend.messageDevice("Thing Name here", "Noti title here", "New Temp data", send, "TEMPNEW" );
 		
