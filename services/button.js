@@ -19,7 +19,7 @@ util.inherits(button, EventEmitter);
 
 button.prototype.init = function( btn_port ){
 	port = btn_port;
-    rpio.open(port, rpio.INPUT);
+    rpio.open(port, rpio.INPUT, rpio.PULL_DOWN);
     messageSend.init('AIzaSyBAirrWt0-MbnVqR5l8YTIsc0foFYmHJPc');
 
 	BTN();
