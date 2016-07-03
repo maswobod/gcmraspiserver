@@ -71,8 +71,8 @@ temp.prototype.getTempData = function(){
 	 * Every 10 Milivolt = 1 Celcius
 	 */
 	temperature = invVol*100;
-	lower_bound = old_tmperature-0.2;
-	upper_bound = old_tmperature+0.2;
+	lower_bound = old_tmperature-0.3;
+	upper_bound = old_tmperature+0.3;
 
 	console.log(temperature);
 	if (temperature < lower_bound || temperature > upper_bound) {

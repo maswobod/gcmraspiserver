@@ -37,7 +37,7 @@ var poti = require('./services/poti');
  *var DOUT_Pin = 21;  // Digital out bcm 9
  *var CS_Pin = 24; //Chip-Select bcm 8
  */
-var interval = 30000; // Every 30 sec
+var interval = 32131; // Every 30 sec
 poti.init(23,19,21,24,7);
 setInterval(function() {
 	console.log("Check for Poti Data");
@@ -52,7 +52,7 @@ temp.init(23,19,21,24,5);
 setInterval(function() {
 	console.log("Check for Temp Data");
 	temp.getTempData();
-}, 40000);
+}, 60000);
 modules.modules.push({"TEMP" : "Temperatur"});
 
 
