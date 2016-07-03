@@ -21,14 +21,18 @@ RGBLED.init(15,13,11);
 modules.modules.push({'RGBLED' : 'Licht20'});
 
 //Buttons Service Object
-/*
+
 var btn1 = require('./services/button');
 btn1.init(29);
+
 var btn2  = require('./services/button');
 btn2.init(31);
-*/
+setInterval(function() {
+	btn1.checkIfPressed();
+	btn2.checkIfPressed();
+}, 1000);
+
 //Poti Service Object
-var poti = require('./services/poti');
 /*
  *Init like this:
  *var poti_channel = 7;  // Analog/Digital-Channel
@@ -37,16 +41,17 @@ var poti = require('./services/poti');
  *var DOUT_Pin = 21;  // Digital out bcm 9
  *var CS_Pin = 24; //Chip-Select bcm 8
  */
+ /*
+var poti = require('./services/poti');
 var interval = 32131; // Every 30 sec
 poti.init(23,19,21,24,7);
 setInterval(function() {
 	console.log("Check for Poti Data");
 	poti.getPotiData(); 
 }, interval);
-modules.modules.push({'POTI' : 'Poti1'});
+modules.modules.push({'POTI' : 'Poti1'});*/
 
 //Temp Service Object
-
 var temp = require('./services/temp');
 temp.init(23,19,21,24,5);
 setInterval(function() {

@@ -4,6 +4,8 @@ var rpio = require('rpio');
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;
 
+//To send Messages
+var messageSend = require('./messageSender');
 /*
  * PUBLIC METHODS.
  */
@@ -18,7 +20,8 @@ util.inherits(button, EventEmitter);
 button.prototype.init = function( btn_port ){
 	rpio.open(btn_port, rpio.INPUT, rpio.PULL_DOWN);
 	port = btn_port;
-	rpio.poll(btn_port, pollcb);
+
+    messageSend.init('AIzaSyBAirrWt0-MbnVqR5l8YTIsc0foFYmHJPc');
 
 	BTN();
 };
@@ -27,14 +30,12 @@ button.prototype.init = function( btn_port ){
  * PRIVATE METHODS.
  */ 
 
-function pollcb(pin){
-   /*
-    * Interrupts aren't supported by the underlying hardware, so events
-    * may be missed during the 1ms poll window.  The best we can do is to
-    * print the current state after a event is detected.
-    */   
-    var state = btns.read(pin) ? 'pressed' : 'released';
-    console.log('Button event on P%d (button currently %s)', pin, state);
+button.prototype.checkIfPressed = function(){
+    gpio.read(port, function(err, value) {
+    if(err) throw err;
+    console.log(value); // The current state of the pin
+});
+
 };
 
 function BTN(){
