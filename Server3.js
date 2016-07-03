@@ -46,14 +46,14 @@ setInterval(function() {
 modules.modules.push({'POTI' : 'Poti1'});
 
 //Temp Service Object
-/*
+
 var temp = require('./services/temp');
 temp.init(23,19,21,24,5);
 setInterval(function() {
 	console.log("Check for Temp Data");
 	temp.getTempData();
-}, 3000);*/
-//modules.modules.push({"TEMP" : "Temperatur"});
+}, 3000);
+modules.modules.push({"TEMP" : "Temperatur"});
 
 
 //Database Service Object
@@ -162,6 +162,10 @@ cl.on('stanza',
 
           case "pottyData":
             database.getDataFromDB("poti1");
+            break;
+
+          case "tempData":
+            database.getDataFromDB("temp1");
             break;
 
          case "DELETE":

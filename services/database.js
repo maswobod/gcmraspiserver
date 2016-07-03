@@ -65,7 +65,9 @@ database.prototype.getDataFromDB = function(collectionName){
           	potiall: []
           };
           send.potiall.push(result);
-          messageSend.messageDevice("Thing 1", null, null, send, "POTIALL");
+
+          var datataype = collectionName + "ALL";
+          messageSend.messageDevice("Thing 1", null, null, send, datataype);
         } else {
           console.log('No document(s) found with defined "find" criteria!');
         }
