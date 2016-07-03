@@ -88,8 +88,12 @@ temp.prototype.getTempData = function(){
 		database.addDataToDB("temp1",timestamp, temperature);
 		console.log("Message Device: " + temperature);
 		var newTempData = {Time: timestamp, Value: temperature};
-		var jString = JSON.stringify(newTempData);
-		messageSend.messageDevice("Thing Name here", "Noti title here", "New Temp data", jString, "TEMPNEW" );
+		var send = {
+          	tempnew: []
+          };
+        send.potinew.push(newTempData);
+
+		messageSend.messageDevice("Thing Name here", "Noti title here", "New Temp data", send, "TEMPNEW" );
 		
 	}
 	old_tmperature = temperature;
