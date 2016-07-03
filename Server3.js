@@ -29,8 +29,8 @@ var btn2  = require('./services/button');
 btn2.init(31);
 setInterval(function() {
 	btn1.checkIfPressed();
-	btn2.checkIfPressed();
-}, 1000);
+	//btn2.checkIfPressed();
+}, 2000);
 
 //Poti Service Object
 /*

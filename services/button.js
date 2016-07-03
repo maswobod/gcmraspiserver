@@ -30,7 +30,7 @@ button.prototype.init = function( btn_port ){
  */ 
 
 button.prototype.checkIfPressed = function(){
-    console.log('Pin 11 is currently set ' + (rpio.read(port) ? 'high' : 'low'));
+    console.log('Pin '+ port + ' is currently set ' + (rpio.read(port) ? 'high' : 'low'));
 };
 
 function BTN(){
