@@ -52,7 +52,7 @@ temp.init(23,19,21,24,5);
 setInterval(function() {
 	console.log("Check for Temp Data");
 	temp.getTempData();
-}, 3000);
+}, 40000);
 modules.modules.push({"TEMP" : "Temperatur"});
 
 
