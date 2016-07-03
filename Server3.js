@@ -21,17 +21,23 @@ RGBLED.init(15,13,11);
 modules.modules.push({'RGBLED' : 'Licht20'});
 
 //Buttons Service Object
+//Port 29 gpio 5 & Port 31 gpio 6
+var Gpio = require('onoff').Gpio,
+  button = new Gpio(5, 'in',  'falling'),
+  button2 = new Gpio(6, 'in',  'falling');
 
-/*
-var btn1 = require('./services/button');
-btn1.init(29);
+button.watch(function(err, value) {
+  console.log('btn1 pushed'); 
+});
 
-var btn2  = require('./services/button');
-btn2.init(31);
-setInterval(function() {
-	btn1.checkIfPressed();
-	//btn2.checkIfPressed();
-}, 2000);
+button2.watch(function(err, value) {
+  console.log('btn2 pushed'); 
+});
+
+process.on('SIGINT', function () {
+  button.unexport();
+  button2.unexport();
+});
 
 //Poti Service Object
 /*
