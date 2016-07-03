@@ -1,6 +1,6 @@
 // Button Module
 var port; 
-var rpio = require('rpio');
+var gpio = require("pi-gpio");
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;
 
@@ -18,7 +18,6 @@ util.inherits(button, EventEmitter);
 
 
 button.prototype.init = function( btn_port ){
-	rpio.open(btn_port, rpio.INPUT, rpio.PULL_DOWN);
 	port = btn_port;
 
     messageSend.init('AIzaSyBAirrWt0-MbnVqR5l8YTIsc0foFYmHJPc');
