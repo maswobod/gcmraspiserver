@@ -9,10 +9,10 @@ var modules = {
 	modules: []
 	};
 
-
+var ApiKey = 'AIzaSyBAirrWt0-MbnVqR5l8YTIsc0foFYmHJPc'; 
 //To send Messages
 var messageSend = require('./services/messageSender');
-messageSend.init('AIzaSyBAirrWt0-MbnVqR5l8YTIsc0foFYmHJPc');
+messageSend.init(ApiKey);
 
 //LED Service Object
 var LED = require('./services/led');
@@ -50,7 +50,7 @@ button2.watch(function(err, value) {
  *var DOUT_Pin = 21;  // Digital out bcm 9
  *var CS_Pin = 24; //Chip-Select bcm 8
  */
- /*
+ 
 var poti = require('./services/poti');
 var interval = 32131; // Every 30 sec
 poti.init(23,19,21,24,7);
@@ -58,8 +58,8 @@ setInterval(function() {
 	console.log("Check for Poti Data");
 	poti.getPotiData(); 
 }, interval);
-modules.modules.push({'POTI' : 'Poti1'});*/
-
+modules.modules.push({'POTI' : 'Poti1'});
+/*
 //Temp Service Object
 var temp = require('./services/temp');
 temp.init(23,19,21,24,5);
@@ -68,7 +68,7 @@ setInterval(function() {
 	temp.getTempData();
 }, 60000);
 modules.modules.push({"TEMP" : "Temperatur"});
-
+*/
 
 //Database Service Object
 var database = require('./services/database');
@@ -86,7 +86,7 @@ var xmpp = require('node-xmpp-client');
 var options = {
   type: 'client',
   jid: '508133522449@gcm.googleapis.com',
-  password: 'AIzaSyBAirrWt0-MbnVqR5l8YTIsc0foFYmHJPc',
+  password: ApiKey,
   port: 5235,
   host: 'gcm.googleapis.com',
   legacySSL: true,

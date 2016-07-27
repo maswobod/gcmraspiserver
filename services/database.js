@@ -1,11 +1,11 @@
 //Database Module
-//LED Module
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;
 
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 var url = 'mongodb://localhost:27017/test_1';
+
 //To send Messages
 var messageSend = require('./messageSender');
 

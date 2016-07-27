@@ -4,16 +4,15 @@ var rpio = require('rpio');
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;
 
-/*
- * PUBLIC METHODS.
- */
-
 function led()
 {
 	EventEmitter.call(this);
 }
 util.inherits(led, EventEmitter);
 
+/*
+ * PUBLIC METHODS.
+ */
 
 led.prototype.init = function( led_port ){
 	rpio.open(led_port, rpio.OUTPUT, rpio.LOW);
