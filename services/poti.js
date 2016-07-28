@@ -1,4 +1,9 @@
-//Poti Module
+/**********************************************************
+ * Bachelor Thesis: Design Pattersn for IoT Systems
+ * Potentiometer Control Module
+ * Author: Martin Swoboda
+ * Version: 280716
+ ***********************************************************/
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;
 var adwandler = require('./adwandler');
@@ -22,28 +27,26 @@ util.inherits(poti, EventEmitter);
 /* 
  * Constants
  */
-
 poti.anz = 3;
 
 /*
  * PUBLIC METHODS.
  */
-
-poti.prototype.init = function(  clk, din, dout, cs, channel ){
-	adwandler.init( clk, din, dout, cs, channel);
+poti.prototype.init = function(converterAD, sendKey){
+	adwandler.init(converterAD);
 	database.init();
-	messageSend.init('AIzaSyBAirrWt0-MbnVqR5l8YTIsc0foFYmHJPc');
+	messageSend.init(sendKey);
 	POTI();
 };
 
-poti.prototype.getPotiData = function(){
+poti.prototype.getPotiData = function(channel){
 	//First measurement most time very different
-	adwandler.getAnalogData();
+	adwandler.getAnalogData(channel);
 	
 	//Get avrage measurement
 	sum = 0;
 	for( var i = 0; i < poti.anz; i++){
-		var adData = adwandler.getAnalogData();
+		var adData = adwandler.getAnalogData(channel);
 		sum += adData;
 		sleep(500);		
 	}
@@ -83,7 +86,6 @@ poti.prototype.getPotiData = function(){
 /*
  * PRIVATE METHODS.
  */ 
-
 function POTI(){
 	console.log("Poti defined");
 };

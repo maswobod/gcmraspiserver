@@ -1,5 +1,9 @@
-//Temp Module
-//Poti Module
+/**********************************************************
+ * Bachelor Thesis: Design Pattersn for IoT Systems
+ * Temperature Control Module
+ * Author: Martin Swoboda
+ * Version: 280716
+ ***********************************************************/
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;
 var adwandler = require('./adwandler');
@@ -26,38 +30,25 @@ util.inherits(temp, EventEmitter);
  */
  temp.anz = 3;
 
-var temp_clk;
-var temp_din;
-var temp_dout;
-var temp_cs;
-var temp_channel;
-
 /*
  * PUBLIC METHODS.
  */
-
-temp.prototype.init = function(  clk, din, dout, cs, channel ){
-	temp_clk = clk;
-	temp_din = din;
-	temp_dout = dout;
-	temp_cs = cs;
-	temp_channel = channel;
-
-	adwandler.init( clk, din, dout, cs, channel );
+temp.prototype.init = function(converterAD, sendKey){
+	adwandler.init(converterAD);
 	database.init();
-	messageSend.init('AIzaSyBAirrWt0-MbnVqR5l8YTIsc0foFYmHJPc');
+	messageSend.init(sendKey);
 	
 	TEMP();
 };
 
-temp.prototype.getTempData = function(){
+temp.prototype.getTempData = function(channel){
 	//First measurement most time very different
-	adwandler.getAnalogData();
+	adwandler.getAnalogData(channel);
 
 	//Get avrage measurement
 	sum = 0;
 	for( var i = 0; i < temp.anz; i++){
-		var tmp = adwandler.getAnalogData();
+		var tmp = adwandler.getAnalogData(channel);
 		sum += tmp;
 		sleep(500);	
 	}
@@ -106,7 +97,6 @@ temp.prototype.getTempData = function(){
 function TEMP(){
 	console.log("Temp defined");
 };
-
 
 function sleep(milliseconds) {
   var start = new Date().getTime();

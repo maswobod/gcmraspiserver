@@ -1,15 +1,16 @@
-// Send Message Module
+/**********************************************************
+ * Bachelor Thesis: Design Pattersn for IoT Systems
+ * Message Sender Control Module
+ * Author: Martin Swoboda
+ * Version: 280716
+ ***********************************************************/
 var gcm = require('node-gcm');
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;
 
 var msSender;
-// Tokens to send 
+// Tokens to send to
 var regTokens = [];
-
-/*
- * PUBLIC METHODS.
- */
 
 function messageSender()
 {
@@ -17,7 +18,9 @@ function messageSender()
 }
 util.inherits(messageSender, EventEmitter);
 
-
+/*
+ * PUBLIC METHODS.
+ */
 messageSender.prototype.init = function( sender ){
 	msSender = new gcm.Sender(sender);
 
@@ -66,7 +69,6 @@ messageSender.prototype.messageDevice = function(thingName, notiTitle, notiBody,
 /*
  * PRIVATE METHODS.
  */ 
-
 function SNDMSG(){
 	console.log("Message Sender defined");
 };

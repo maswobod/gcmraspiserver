@@ -1,4 +1,9 @@
-//Database Module
+/**********************************************************
+ * Bachelor Thesis: Design Pattersn for IoS Systems
+ * Database Control Module
+ * Author: Martin Swoboda
+ * Version: 280716
+ ***********************************************************/
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;
 

@@ -1,15 +1,12 @@
-//RGB LED Module
+/**********************************************************
+ * Bachelor Thesis: Design Pattersn for IoT Systems
+ * RGB Light Emitting Diode Control Module
+ * Author: Martin Swoboda
+ * Version: 280716
+ ***********************************************************/
 var rpio = require('rpio');
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;
-
-var RED;
-var GREEN;
-var BLUE;
-
-// ---
-// PUBLIC METHODS.
-// ---
 
 function rgbled()
 {
@@ -20,21 +17,27 @@ util.inherits(rgbled, EventEmitter);
 /*
  * Init the RGB Ports
  */
-rgbled.prototype.init = function( red, green, blue ){
+rgbled.prototype.init = function( rgbArray){
+
+	var red = rgbArray[0];
+	var green = rgbArray[1];
+	var blue = rgbArray[2];
+
 	rpio.open(red, rpio.OUTPUT, rpio.LOW); //Green
 	rpio.open(green, rpio.OUTPUT, rpio.LOW); //Blue
 	rpio.open(blue, rpio.OUTPUT, rpio.LOW); //Red
 
-	RED = red;
-	GREEN = green;
-	BLUE = blue;
 	LED();
 };
 
 /*
  * Change the Colors of the RGB of turn it off
  */
-rgbled.prototype.control = function(color){
+rgbled.prototype.control = function(color, rgbArray){
+	var RED = rgbArray[0];
+	var GREEN = rgbArray[1];
+	var BLUE = rgbArray[2];
+
 	switch (color) {     
 	    case "OFF":
 	    	turnOff(RED);
@@ -63,10 +66,9 @@ rgbled.prototype.control = function(color){
 
 }
 
-// ---
-// PRIVATE METHODS.
-// ---
-
+/*
+* PRIVATE METHODS.
+*/ 
 var turnOn = function(port){
 	console.log("Turn On: " + port);
 	rpio.write(port, rpio.HIGH);
