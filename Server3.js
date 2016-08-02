@@ -168,53 +168,14 @@ cl.on('stanza',
          */
         if (!(contains(messageSend.getRegTokens(),msgRegToken))) {
         	console.log("Add Reg Token & send all modules");
-        	messageSend.addRegToken(msgRegToken);
+        	addObservable(msgRegToken);
         	messageSend.messageDevice("Thing Name here", "Noti title here", "Hallo form new Thing", modules, "Modules");
         }else{
         	console.log("Already in RegTokens");
         };
 
-        switch (messageData.data.message) {
-          case "TurnOn":
-            LED.turnOn(led1);
-            break;
-
-          case "TurnOff":
-            LED.turnOff(led1);
-            break;
-
-          case "RGB OFF":
-            RGBLED.control("OFF",rgb1);
-            break;
-
-          case "RGB RED":
-            RGBLED.control("RED",rgb1);
-          break;
-              
-          case "RGB BLUE":
-            RGBLED.control("BLUE",rgb1);
-          break;
-
-          case "RGB GREEN":
-            RGBLED.control("GREEN",rgb1);
-          break;
-
-          case "pottyData":
-            database.getDataFromDB("poti1");
-            break;
-
-          case "tempData":
-            database.getDataFromDB("temp1");
-            break;
-
-         case "DELETE":
-         	console.log("Delete: " + msgRegToken);
-         	messageSend.deleteRegToken(msgRegToken);
-
-         default:
-            console.log("Unknown Message")
-            break;
-        }
+        handleObservableMessage(messageData.data.message);
+        
       } else {
         //Need to do something more here for a nack.
         console.log("message was an ack or nack...discarding");
@@ -251,4 +212,73 @@ var contains = function(a, obj){
 	       }
 	    }
 	    return false;
+};
+
+
+/*
+ * doubleOberser Functions
+ */
+
+var addObservable = function(observable){
+	messageSend.addRegToken(msgRegToken);
+};
+
+var deleteObservable = function(observable){
+	messageSend.deleteRegToken(msgRegToken);
+};
+
+var getObservableData = function( pThingID,  pType){
+	/*
+	 * Not needed yet
+	 * Devices only saved by Token
+	 */
+};
+
+var getObservables = function(){
+	return messageSend.getRegTokens();
+};
+
+var handleObservableMessage =function(message){
+	switch (message) {
+        case "TurnOn":
+        	LED.turnOn(led1);
+        break;
+
+        case "TurnOff":
+        	LED.turnOff(led1);
+        break;
+
+        case "RGB OFF":
+        	RGBLED.control("OFF",rgb1);
+        break;
+
+        case "RGB RED":
+          	RGBLED.control("RED",rgb1);
+        break;
+              
+        case "RGB BLUE":
+          	RGBLED.control("BLUE",rgb1);
+        break;
+
+        case "RGB GREEN":
+          	RGBLED.control("GREEN",rgb1);
+        break;
+
+        case "pottyData":
+          	database.getDataFromDB("poti1");
+        break;
+
+        case "tempData":
+          	database.getDataFromDB("temp1");
+        break;
+
+        case "DELETE":
+       		console.log("Delete: " + msgRegToken);
+         	deleteObservable(msgRegToken);
+        break;
+        
+        default:
+        	console.log("Unknown Message")
+        break;
+    }
 };
